@@ -220,7 +220,6 @@ The process of identifying the path requires the follwoing procedures
         \end{algorithmic}\caption{Algorithm 4}
     \end{algorithm}
 
-
 \section{Computational Results}
     % Add your computational results here. See Table~\ref{tab:mascots} for how to include a table in your document. See Figure~\ref{fig:dubs} for how to include figures in your document.
     The distribution of the magnitude of the averaged signal in the Fourier Domain is the most convincing evidence that, a stationary signal exists in the frequencies domain. 
@@ -247,15 +246,14 @@ The process of identifying the path requires the follwoing procedures
         \caption{The Gaussian Filter}
         \label{fig:guass-filter}
     \end{figure}
-    Finally, the filter is applied as descriped in \hyperref[alg:algorithm4]{Algorithm 4}, and after selecting all the peaking signal in the Spatial domain, we were able to recover the full path of the submaine, as showed in:\hyperref[fig:path]{figure 4}. 
+    Finally, the filter is applied as descriped in \hyperref[alg:algorithm4]{Algorithm 4}, and after selecting all the peaking signal in the Spatial domain, we were able to recover the full path of the submaine, as showed in: \hyperref[fig:path]{figure 4}. The red star is the final location of the submarine, therefore, we should send the P-8 Orio sub-tracking aircraft to the point $[-5, 0.9375, 6.5625]$. 
     \begin{figure}[h]
+        \centering
         \includegraphics*[width=0.7\linewidth]{submarine-path.png}
         \caption{Path of the Submarine}
         \label{fig:path}
         \centering
     \end{figure}
-
-
 
 % \begin{table}
 %     \centering
@@ -292,7 +290,7 @@ The process of identifying the path requires the follwoing procedures
 % Summary and Conclusions
 \newpage
 \section{Summary and Conclusions}
-Add your summary and conclusions here.
+The purpose of the homework is to understand the theoretical background for stationary signal processing, and apply them for this example, while extending some of the ideas in class, mainly, solving the problem in a higher dimension. 
 
 % References
 \printbibliography
@@ -317,6 +315,23 @@ Add your summary and conclusions here.
 % \caption{Example code from external file.}
 % \label{listing:examplecode}
 % \end{listing}
+
+\section{MATLAB Functions}
+    \begin{enumerate}
+        \item[1.] ReconstructAllRealiazation.m \\
+        Function accepts a shifted series of signal in the fourier space, and it will reconstruct the signal use Inverse Fourier Transform.  
+        \item[2.] MaxFrequency.m \\
+        Given a all frames of realization in the frequencies domain, this function figure out the indiex of the frequencies over a certain threshold. 
+        \item[3.] IndexToFrequencies.m \\
+        Given a set of indices, it will use the meshgrid to figure out the coordinates in the frequency domain. 
+        \item[4.] GetPeakingSignal.m \\
+        Given the signal in the spatial domain, it normalize and return the indices of the points that has the maximum magnitude, this is for figuring out the path of the submarine. 
+        \item[5.] FFTAllRealization.m \\
+        For all realizations in 
+        \item[6.] BestGaussianFilter.m \\
+        Given the list of indices representing the frequencies that is over a given threshold, it will return a guassian filter, which is a 3D tensor having the same size as each realization in the spatial domain. 
+    \end{enumerate}
+
 
 \end{appendices}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.13)  15 JAN 2021 01:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.13)  15 JAN 2021 13:10
 entering extended mode
 **c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/main.tex
 (c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/main.tex
@@ -687,22 +687,22 @@ Overfull \hbox (15.0pt too wide) detected at line 221
  []
 
 [3]
-<freq-distribution.png, id=130, 421.575pt x 316.0608pt>
+<freq-distribution.png, id=134, 421.575pt x 316.0608pt>
 File: freq-distribution.png Graphic file (type png)
 <use freq-distribution.png>
-Package pdftex.def Info: freq-distribution.png  used on input line 231.
+Package pdftex.def Info: freq-distribution.png  used on input line 230.
 (pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
-<peaking-freq-position.png, id=133, 421.575pt x 316.0608pt>
+<peaking-freq-position.png, id=137, 421.575pt x 316.0608pt>
 File: peaking-freq-position.png Graphic file (type png)
 <use peaking-freq-position.png>
-Package pdftex.def Info: peaking-freq-position.png  used on input line 239.
+Package pdftex.def Info: peaking-freq-position.png  used on input line 238.
 (pdftex.def)             Requested size: 234.8775pt x 176.09099pt.
-<gaussian-filter.png, id=136, 421.575pt x 316.0608pt>
+<gaussian-filter.png, id=140, 421.575pt x 316.0608pt>
 File: gaussian-filter.png Graphic file (type png)
 <use gaussian-filter.png>
-Package pdftex.def Info: gaussian-filter.png  used on input line 246.
+Package pdftex.def Info: gaussian-filter.png  used on input line 245.
 (pdftex.def)             Requested size: 234.8775pt x 176.09099pt.
-<submarine-path.png, id=140, 421.575pt x 316.0608pt>
+<submarine-path.png, id=144, 421.575pt x 316.0608pt>
 File: submarine-path.png Graphic file (type png)
 <use submarine-path.png>
 Package pdftex.def Info: submarine-path.png  used on input line 252.
@@ -714,34 +714,35 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[4 <c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/freq-distribution.png (PNG copy)>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4 <c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/freq-distribution.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 323.
- [5 <c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/peaking-freq-position.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/gaussian-filter.png (PNG copy)>] [6 <c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/submarine-path.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 323.
+[5 <c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/peaking-freq-position.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/gaussian-filter.png (PNG copy)>] [6 <c:/Users/victo/source/repos/AMATH-582/HW1/HW1Tex/submarine-path.png (PNG copy)>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 338.
+ [7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 338.
  (c:/Users\victo\source\repos\AMATH-582\HW1\HW1Tex\main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 323.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 323.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 338.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 338.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D167581615BC8A5DA72B9DBCB348FB34;920.
+(rerunfilecheck)             Checksum: A2C5C26AE834AC89E98D3ED2779C7E6D;984.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 15552 strings out of 492484
- 265333 string characters out of 3121601
+ 15555 strings out of 492484
+ 265365 string characters out of 3121601
  752061 words of memory out of 3000000
- 19603 multiletter control sequences out of 15000+200000
+ 19604 multiletter control sequences out of 15000+200000
  14633 words of font info for 56 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,10n,45p,873b,1140s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on c:/Users\victo\source\repos\AMATH-582\HW1\HW1Tex\main.pdf (6 pages, 397275 bytes).
+Output written on c:/Users\victo\source\repos\AMATH-582\HW1\HW1Tex\main.pdf (7 pages, 401208 bytes).
 PDF statistics:
- 249 PDF objects out of 1000 (max. 8388607)
- 78 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 260 PDF objects out of 1000 (max. 8388607)
+ 80 named destinations out of 1000 (max. 500000)
+ 149 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -40,7 +40,7 @@ for II = 1:length(Freqs) - 1
     plot3(Freq(1), Freq(2), Freq(3), '-o', 'Color', 'b','MarkerSize', 10, 'MarkerFaceColor', '#D9FFFF'); 
     hold on;
 end
-plot3(Freq(1), Freq(2), Freq(3), '-o', 'Color', 'b','MarkerSize', 10, 'MarkerFaceColor', '#FF0000'); 
+ plot3(Freq(1), Freq(2), Freq(3), '-o', 'Color', 'b','MarkerSize', 10, 'MarkerFaceColor', '#FF0000'); 
 title(strcat("Peaking Frequency in Fourier Space, Threshold: ", num2str(Threshold)));
 xlabel("Frequency: kx"); ylabel("Frequency: ky"); zlabel("Frequency: kz");
 disp("The spread of the peak frequencies are relatively compact inside of the region.");
@@ -69,6 +69,9 @@ plot3(PeakingPoints(1, :), PeakingPoints(2, :), PeakingPoints(3, :), "ko-");
 title("Path of the submarine");
 t = linspace(0, 1, size(PeakingPoints, 2));
 QueryPoints = linspace(0, 1, 100);
+PathX = interpn(t, PeakingPoints(1, :), QueryPoints, "spline");
+PathY = interpn(t, PeakingPoints(2, :), QueryPoints, "spline"); 
+PathZ = interpn(t, PeakingPoints(3, :), QueryPoints, "spline");
 hold on;
 plot3(PathX(end), PathY(end), PathZ(end), "*r");
 xlabel("X axis"); ylabel("Y axis"); zlabel("Z axis");
