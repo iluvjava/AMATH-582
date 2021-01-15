@@ -2,9 +2,6 @@ classdef ProblemParameters < handle
     % I will put all the parameters associated with HW into this class, 
     % so it's easier to refer to.
     
-    
-    
-    
     properties
         L = 10;     % The width of the cube. 
         n = 64;     % The Fourier Resolution. 
