@@ -59,68 +59,75 @@
 
 % Abstract
 \begin{abstract}
-    The paper seeks to explain the process of using FFT as a way to denoise static signal. Specially using the assumption of the presence of whitenosie within the data, we can leverage the statistic feature of normal distribution to reduce the amount of noise in the frquency domain. To demonstrate it, we were given the hypothetical scenario of searching for a submarine and synthetic data to work with, and the goal is to recover the full path of the submarine. 
+    The paper seeks to explain the process of using FFT as a way to denoise static signal. Especially using the assumption of the presence of white nosie in the data, we can leverage the statistical feature of normal distribution to reduce the amount of noise in the frquency domain using multiple realizations. To demonstrate it, we were given the hypothetical scenario of searching for a submarine and synthetic data to work with, and the goal is to recover the full path of the submarine. 
 \end{abstract}
 
 % Introduction and Overview
 \section{Introduction and Overview}
-We are interested in locating a submaring in the Puget Sound area given some noisy acoustic data. The assignment is designed to test the skill of filtering out noise in stationary waves, with the reward of figuring out the full path that the submarine takes. 
-\\
-The data given is a cube of data, collection every 30 mins during a 24 hours period. The data is in the format of complex double and the magnitude of each of the data point represents the presence and absence of the submarine. And that is, if it's zoro then it marks its absence else it marks its presence. 
-
-% % Example Subsection
-% \subsection{Subsection Title}
-% This is a subsection.
-
-% % Example Subsubsection
-% \subsubsection{Subsubsection Title}
-% This is a subsubsection.
+\hspace{1.1em}
+    We are interested in locating a submaring in the Puget Sound area given some noisy acoustic data. The assignment is designed to test the skill of filtering out noise in stationary waves, with the reward of figuring out the full path that the submarine takes. 
+\par
+    The data given is a series of cube of data, collection every 30 mins during a 24 hours period. The data is in the format of complex double and the magnitude of each of the data point represents the presence and absence of the submarine. 
 
 %  Theoretical Background
 \section{Theoretical Background}
 \subsection{Fourier Series/Transform, and Frequency Domain}
+    \hspace{1.1em}
     As we learned from our textbook \cite{kutz_2013}, Fourier introduced the concept of representing a given function $f(x)$ by a trigonometric series of sines and cosines:
+    
     \begin{equation}
         f(x) = \frac{a_0}{2} + \sum_{i=1}^\infty \left(a_n\cos{nx} + b_n\sin{nx}\right) \quad x \in (-\pi,\pi].
         \label{eqn:fourierseries}
     \end{equation}
+    
+    \par
     And the coefficients of the $\sin$ and $\cos$ is up to our interests because it transform the signal with additional useful mathematical properties. 
     The continuation of the Fourier Series is Fourier Transform: 
+    
     \begin{equation}\label{eqn:fourier-transform}
         F(k) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty
         \exp(-ikx)f(x) dx
     \end{equation}
+    
     And the inverse Fourier Transform is: 
+    
     \begin{equation}
         f(x) = \frac{1}{\sqrt{2\pi}}
         \int_{-\infty}^\infty \exp(ikx) F(k)dk
     \end{equation}
+    \par
     The Fourier Transform extend the domain for the coefficients of $\sin$ and $\cos$ to the real domain. 
-    \\
-    For computational reasons, signal is discretized into $2^n$ floats and then a discrete Fourier Transform is performed on the signal. The algorithm is relatively efficient with $\mathcal{O}(N\log(N))$ complexity where $N$ is the length of the signal. 
-    \\
-    In addition, the Fourier Transform above is appicable for signal in $[-\pi, \pi]$ range, but in actual application, the signal locates in $[-L, L]$ or $[L/2, L/2]$ (depends on convention) range. The the additional caveats that, the FFT algorithm shifts the domain in its implementation. 
-    \\
-    Therefore, for any given signal in the domain $[-L/2, L/2]$, the multiplier $k$ equals to $\frac{2\pi}{L}$, and when the signal has been discretized: $k_i = \frac{2\pi i}{L}$ where $-\frac{N}{2}\le i< \frac{N}{2}$.
-    \\
-    Therfore, our frequency domain goes from $\frac{-\pi N}{L}$ to $\frac{\pi N}{L}$. 
+    
+    \par
+    For computational reasons, signal is discretized into $2^n$ complex floats and then a discrete Fourier Transform is performed on the signal. The algorithm is relatively efficient with $\mathcal{O}(N\log(N))$ complexity where $N$ is the length of the signal. 
+    
+    \par
+    However, the Fourier Transform above is applicable for signal in $[-\pi, \pi]$ range, but in actual application, the signal locates in $[-L, L]$ or $[\frac{-L}{2}, \frac{L}{2}]$ (depends on convention) range. The the additional caveats that, the FFT algorithm shifts the domain in its implementation. 
+    
+    \par
+    Therefore, for any given signal in the domain $[-L/2, L/2]$, the multiplier $k$ equals to $\frac{2\pi}{L}$, and when the signal has been discretized: $k_i = \frac{2\pi i}{L}$ where $-\frac{N}{2}\le i< \frac{N}{2}$. Therefore, our frequency domain goes from $\frac{-\pi N}{L}$ to $\frac{\pi N}{L}$. 
 
 \subsection{Denoising in the Frequency Domain}
-    The idea here is to observe the same signal over different time frame of times and realize that the expected value of white nosie in the frequency domain is zero. This idea is Further Discussed in The data science textbook\cite{kutz_2013_pg316}.
-    \\
+    \hspace{1.1em}
+    The idea here is to observe the same signal over different time fames (call realization), and using the fact that the expected value of white noise in the frequency domain is zero. This idea is Further Discussed in the data science textbook\cite{kutz_2013_pg316}, but the gist of it is summarized below: 
+    \par
     Let $\epsilon_i$ to be a white noise signal sampled with discretization of $N$, then: 
     \begin{equation}
         \Re(\widehat{\epsilon_i}) \sim\text{Normal}(0, \sigma) \wedge 
         \Im(\widehat{\epsilon_i}) \sim\text{Normal}(0, \sigma)
         \implies \mathbb{E}(\widehat{\epsilon_i}) = 0
     \end{equation}
-    And this means that, summing over the same stationary signal over different time frame will reduce the magnitude of white noise in the frequencise domian because the real and imaginary part of the white noise has an expecation value of zero. 
+    \par
+    And this means that, summing over the same stationary signal over different time frame will reduce the magnitude of white noise in the frequencies domain because the real and imaginary part of the white noise has an expectation value of zero. 
 
 \subsection{Filtering and Reconstruction of the Submarine Path}
+    \hspace{1.1em}
     Because the signal is stationary, therefore the frequency component is unchanging, and in this particular case, the submarine emits a particlar frequency the is unknown. 
-    \\
-    Therefore after the denosing process, we seek to find the unknown frequencies by simply looking for the frequency compoenent that has maximum magnitude.
-    \\
+    
+    \par
+    Therefore after the denoising process, we seek to find the unknown frequencies by simply looking for the frequency component that has maximum magnitude.
+    
+    \par
     After the identification of the signal, we use a Gaussian filter to boost this particular frequencies in the original signal. The Gaussian filter is given as: 
     \begin{equation}\label{eqn:gaussian-filter}
         \exp
@@ -128,25 +135,29 @@ The data given is a cube of data, collection every 30 mins during a 24 hours per
                 \mu_y(y - y_0)^2
                 +\mu_z(y - y_0)^2\right)
     \end{equation}
-    Where $x_0, y_0, z_0$ is the frequencies we try to boost (Should be the singal that the submarine is emiting) and the multiplier $\mu_x, \mu_y, \mu_z$ determines the window size of the Gaussian filter. 
-    \\
-    After the desired signal emitted by the submarine is identified, using the gusssian filter and applied it to the signal in the fourier domain will allow us to listen to this particular frequency. A similar idea but for 1D signal is discussed in the textbook\cite{kutz_2013_pg312} , here we extend the same idea into 3D. 
-    \\
-    Bedause white noise is random, there will be significan amount of phase cancellation. Therefore, if we inverse Fourier Transfrom the filtered signal, looking for the singnal that is peaking at each time frame will give us the apprixmate location of the submarine. 
+    
+    \par
+    Where $x_0, y_0, z_0$ is the frequencies we try to boost (Should be the signal that the submarine is emitting) and the multiplier $\mu_x, \mu_y, \mu_z$ determines the window size of the Gaussian filter. 
+    
+    \par
+    After the desired signal emitted by the submarine is identified, using the gaussian filter and applied it to the signal in the fourier domain will allow us to listen to this particular frequency. A similar idea but for 1D signal is discussed in the textbook\cite{kutz_2013_pg312} , here we extend the same idea into 3D. 
+
+    \par
+    because white noise is normal random, there will be significant amount of phase cancellation. Therefore, if we inverse Fourier Transform the filtered signal, looking for the signal that is peaking at each time frame will give us the approximate location of the submarine. 
 
 % Algorithm Implementation and Development
 \section{Algorithm Implementation and Development}
-The process of identifying the path requires the follwoing procedures
+The process of identifying the path requires the following procedures
 \begin{enumerate}
     \item[1.] Establish basic parameters such as the spatial and Frequency domain.
-    \item[2.] Taking the average on the frequencies domain for all realization and identify the frequency. 
-    \item[3.] Use the frequency to construct a Guassian Filter, apply the filter to the data and them reconstruct the signal. 
+    \item[2.] Taking the average on the frequencies domain for all realization and identify the submarine frequency.
+    \item[3.] Use the frequency to construct a Gaussian Filter, apply the filter to the data and them reconstruct the signal.
     \item[4.] Identify the path of the submarine from the reconstructed signal. 
 \end{enumerate}
 
 \newpage
 \subsection{Signal Averaging and Frequencies Identification}
-    For the first part, we need to establish the vectors that represents the sptial and frequencie domain.
+    For the first part, we need to establish the vectors that represents the spatial and frequencies domain.
     \begin{algorithm}\label{alg:setup}\small
         \begin{algorithmic}[1]
             \STATE{\textbf{Input: }Subdata}
@@ -157,6 +168,7 @@ The process of identifying the path requires the follwoing procedures
             \STATE{\textbf{Initliaze:} kx, ky, kz, to be 3d meshgrid using ks}
         \end{algorithmic}\caption{Setup Spatial and Frequency Domain}
     \end{algorithm}
+
     On line 4 of \hyperref[alg:setup]{Algorithm 1}, the frequency domain vector is given by: 
     \begin{equation}
         \text{fftshift}\left(
@@ -166,11 +178,12 @@ The process of identifying the path requires the follwoing procedures
             \right]
             \right)
     \end{equation}
+
 \subsection{Averaging and Identify Unknown Frequencies}
     \begin{algorithm}\small
         \begin{algorithmic}[1]\label{alg:average}
             \STATE{\textbf{Precondition: }Algorithm 1 has been run}
-            \STATE{Average := zeros}\\
+            \STATE{Average := zeros}
             \FOR{TimeFrame T in Subdata}
             {
                 \STATE{Perform FFT on T, with shifts}
@@ -185,7 +198,8 @@ The process of identifying the path requires the follwoing procedures
         \end{algorithmic}
         \caption{Identifying Unknown Frequencies}
     \end{algorithm}
-    Take note that, we have selected frequencies with a magnitude that is larger than a certain threshold. This choice is made for the purpose of relexing the constraint, giving us the possibility see just how much higher is the magnitude of the peaking frequencies compare to all the others. 
+
+    Take note that, we have selected frequencies with a magnitude that is larger than a certain threshold. This choice is made for the purpose of relaxing the constraint, giving us the possibility see just how much higher is the magnitude of the peaking frequencies compare to all the others.
 
 
 \subsection{Applying Filter and Reconstruction}
@@ -205,6 +219,7 @@ The process of identifying the path requires the follwoing procedures
         \ENDFOR
         \end{algorithmic}\caption{Filtering, Reconstructing Path}
     \end{algorithm}
+    Algorithm 3 produces a series of tensors representing the likelihood of the presence of the submarine in the spatial domain for each realization. 
 
 \subsection{Tracing the Path}
     \begin{algorithm}\label{alg:algorithm4}\small
@@ -217,36 +232,46 @@ The process of identifying the path requires the follwoing procedures
                 \STATE{Append it to ``Results"}
             \ENDFOR
             \STATE{Visualize Results}
-        \end{algorithmic}\caption{Algorithm 4}
+        \end{algorithmic}\caption{Tracing the Submarine Path}
     \end{algorithm}
 
 \section{Computational Results}
     % Add your computational results here. See Table~\ref{tab:mascots} for how to include a table in your document. See Figure~\ref{fig:dubs} for how to include figures in your document.
-    The distribution of the magnitude of the averaged signal in the Fourier Domain is the most convincing evidence that, a stationary signal exists in the frequencies domain. 
-    As a common knowledge, the distribution of the modulous of a complex number is the Rayleigh Distribution, a Chi Square distribution with DF = 2. 
+    \hspace{1.1em}
+    The distribution of the magnitude of the averaged signal in the Frequencies Domain is the most convincing evidence that, a stationary signal exists in the frequencies domain.  
+    
+    \par
+    As a common knowledge, the distribution of the modulus of a complex number is the Rayleigh Distribution, a Chi Square distribution with DF = 2. 
     Therefore, we expect low level confidence of observing magnitude on the tail of the distribution. Anything contrary observation will yield existence of a stationary signal, intuitively. This is showed in \hyperref[fig:frequencies-mag-distribution]{Figure 1}, the first plot is fitting the Rayleigh Distribution, however there are a fair amount of frequencies that is higher than the threshold 0.7. 
     \begin{figure}[h]
         \centering
         \includegraphics*[width=0.7\linewidth]{freq-distribution.png}
-        \caption{Distribution of the maginitude of averaged frequencies}
+        \caption{Distribution of the magnitude of averaged frequencies}
         \label{fig:frequencies-mag-distribution}
     \end{figure}
-    \\
-    If the frequencies that is peaking indeed is the frequency that the submarine is emitting, then it will be in a narrow range. Which is indeed the case and the frequencies is plotted in \hyperref[fig:peaking-freq]{Figure 2}, and the red dot is the location of frequency with maximum magnitude, and all other freuqneices that is above the threshold close to each other. 
+    
+    \par
+    If the frequencies that is peaking indeed is the frequency that the submarine is emitting, then it will be in a narrow range. Which is indeed the case and the frequencies is plotted in \hyperref[fig:peaking-freq]{Figure 2}, and the red dot is the location of frequency with maximum magnitude, and all other frequencies that is above the threshold close to each other. 
+    
     \begin{figure}[h]
         \centering
         \includegraphics*[width=0.5\linewidth]{peaking-freq-position.png}
-        \caption{Distribution of the maginitude of averaged frequencies}
+        \caption{Distribution of the magnitude of averaged frequencies}
         \label{fig:peaking-freq}
     \end{figure}
-    Next, we use the apprixmate location of the frequency, which in the box $[4.6, 5.4]\times [-7.2, -6.6]\times[1.6, 2.2]$, and that is the approximately where the guassian filter is covering. The filter is plotted in \hyperref[fig:guass-filter]{Figure 3}. 
+
+    Next, we use the approximate location of the frequency, which in the box $[4.6, 5.4]\times [-7.2, -6.6]\times[1.6, 2.2]$, and that is the approximately where the Gaussian Filter is covering. The filter is plotted in \hyperref[fig:guass-filter]{Figure 3}. 
+    
     \begin{figure}[h]
         \centering
         \includegraphics*[width=0.5\linewidth]{gaussian-filter.png}
         \caption{The Gaussian Filter}
         \label{fig:guass-filter}
     \end{figure}
-    Finally, the filter is applied as descriped in \hyperref[alg:algorithm4]{Algorithm 4}, and after selecting all the peaking signal in the Spatial domain, we were able to recover the full path of the submaine, as showed in: \hyperref[fig:path]{figure 4}. The red star is the final location of the submarine, therefore, we should send the P-8 Orio sub-tracking aircraft to the point $[-5, 0.9375, 6.5625]$. 
+
+    \par
+    Finally, the filter is applied in \hyperref[alg:algorithm4]{Algorithm 4}, and after selecting indices of all peaking signal in the Spatial domain, we were able to recover the full path of the submarine, which is showed in: \hyperref[fig:path]{figure 4}. The red star is the final location of the submarine, therefore, we should send the P-8 Orio sub-tracking aircraft to the point $[-5, 0.9375, 6.5625]$.
+
     \begin{figure}[h]
         \centering
         \includegraphics*[width=0.7\linewidth]{submarine-path.png}
@@ -255,42 +280,10 @@ The process of identifying the path requires the follwoing procedures
         \centering
     \end{figure}
 
-% \begin{table}
-%     \centering
-%     \begin{tabular}{rll}
-%     & Name & Years \\
-%     \hline
-%     1 & Frosty & 1922-1930  \\
-%     2 & Frosty II & 1930-1936 \\
-%     3 & Wasky & 1946 \\
-%     4 & Wasky II & 1947 \\
-%     5 & Ski & 1954 \\
-%     6 & Denali & 1958 \\
-%     7 & King Chinook & 1959-1968\\
-%     8 & Regent Denali & 1969 \\
-%     9 & Sundodger Denali & 1981-1992 \\
-%     10 & King Redoubt & 1992-1998 \\
-%     11 & Prince Redoubt & 1998 \\
-%     12 & Spirit & 1999-2008 \\
-%     13 & Dubs I & 2009-2018 \\
-%     14 & Dubs II & 2018-Present
-%     \end{tabular}
-%     \caption{UW mascots as described in \cite{washington_huskies}.}
-%     \label{tab:mascots}
-% \end{table}
-
-% begin{figure}[tb] % t = top, b = bottom, etc.
-% \begin{figure}
-%     \centering
-%     \includegraphics[width=0.5\linewidth]{dubs.jpg}
-%     \caption{Here is a picture of Dubs \cite{webeck_2018}. Dubs did not swallow a marble.}
-%     \label{fig:dubs}
-% \end{figure}
-
-% Summary and Conclusions
 \newpage
 \section{Summary and Conclusions}
-The purpose of the homework is to understand the theoretical background for stationary signal processing, and apply them for this example, while extending some of the ideas in class, mainly, solving the problem in a higher dimension. 
+    \hspace{1.1em}
+    The purpose of the homework is to understand the theoretical background for stationary signal processing, and apply them for this example, while extending some of the ideas in class, mainly, solving the problem in a higher dimension. As we can see, for this example, the method off FFT is effective for the noise filtering, however, more careful analysis should be involved for determining what kind of threshold to place using advanced statistical method, in this discussion however it's entirely empirical and it just happens to work because we have the assumption that it's a homework for a class and it should work out as expected. 
 
 % References
 \printbibliography
@@ -298,30 +291,12 @@ The purpose of the homework is to understand the theoretical background for stat
 % Appendices
 \begin{appendices}
 
-% MATLAB Functions
-% \section{MATLAB Functions}
-% Add your important MATLAB functions here with a brief implementation explanation. This is how to make an \textbf{unordered} list:
-% \begin{itemize}
-%     \item \texttt{y = linspace(x1,x2,n)} returns a row vector of \texttt{n} evenly spaced points between \texttt{x1} and \texttt{x2}. 
-%     \item \texttt{[X,Y] = meshgrid(x,y)} returns 2-D grid coordinates based on the coordinates contained in the vectors \texttt{x} and \texttt{y}. \text{X} is a matrix where each row is a copy of \texttt{x}, and \texttt{Y} is a matrix where each column is a copy of \texttt{y}. The grid represented by the coordinates \texttt{X} and \texttt{Y} has \texttt{length(y)} rows and \texttt{length(x)} columns.  
-% \end{itemize}
-
-% % MATLAB Codes
-% \section{MATLAB Code}
-% Add your MATLAB code here. This section will not be included in your page limit of six pages.
-
-% \begin{listing}[h]
-% \inputminted{matlab}{example.m}
-% \caption{Example code from external file.}
-% \label{listing:examplecode}
-% \end{listing}
-
 \section{MATLAB Functions}
     \begin{enumerate}
         \item[1.] ReconstructAllRealiazation.m \\
         Function accepts a shifted series of signal in the fourier space, and it will reconstruct the signal use Inverse Fourier Transform.  
         \item[2.] MaxFrequency.m \\
-        Given a all frames of realization in the frequencies domain, this function figure out the indiex of the frequencies over a certain threshold. 
+        Given a all frames of realization in the frequencies domain, this function figure out the indices of the frequencies over a certain threshold. 
         \item[3.] IndexToFrequencies.m \\
         Given a set of indices, it will use the meshgrid to figure out the coordinates in the frequency domain. 
         \item[4.] GetPeakingSignal.m \\
@@ -329,8 +304,10 @@ The purpose of the homework is to understand the theoretical background for stat
         \item[5.] FFTAllRealization.m \\
         For all realizations in 
         \item[6.] BestGaussianFilter.m \\
-        Given the list of indices representing the frequencies that is over a given threshold, it will return a guassian filter, which is a 3D tensor having the same size as each realization in the spatial domain. 
+        Given the list of indices representing the frequencies that is over a given threshold, it will return a Gaussian Filter, which is a 3D tensor having the same size as each realization in the spatial domain. 
     \end{enumerate}
+
+
     
 \end{appendices}
 
