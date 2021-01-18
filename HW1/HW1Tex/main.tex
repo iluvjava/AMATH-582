@@ -105,7 +105,7 @@
     However, the Fourier Transform above is applicable for signal in $[-\pi, \pi]$ range, but in actual application, the signal locates in $[-L, L]$ or $[\frac{-L}{2}, \frac{L}{2}]$ (depends on convention) range. The the additional caveats that, the FFT algorithm shifts the domain in its implementation. 
     
     \par
-    Therefore, for any given signal in the domain $[-L/2, L/2]$, the multiplier $k$ equals to $\frac{2\pi}{L}$, and when the signal has been discretized: $k_i = \frac{2\pi i}{L}$ where $-\frac{N}{2}\le i< \frac{N}{2}$. Therefore, our frequency domain goes from $\frac{-\pi N}{L}$ to $\frac{\pi N}{L}$. 
+    Therefore, for any given signal in the domain $[-L/2, L/2]$, the $k$ should rescale to $\frac{2\pi k}{L}$, and when the signal has been discretized: $k_i = \frac{2\pi i}{L}$ where $-\frac{N}{2}\le i< \frac{N}{2}$. Therefore, our frequency domain goes from $\frac{-\pi N}{L}$ to $\frac{\pi N}{L}$. 
 
 \subsection{Denoising in the Frequency Domain}
     \hspace{1.1em}
@@ -294,7 +294,7 @@ The process of identifying the path requires the following procedures
 \section{MATLAB Functions}
     \begin{enumerate}
         \item[1.] ReconstructAllRealiazation.m \\
-        Function accepts a shifted series of signal in the fourier space, and it will reconstruct the signal use Inverse Fourier Transform.  
+        Function accepts a shifted series of signal in the Fourier space, and it will reconstruct the signal use Inverse Fourier Transform.  
         \item[2.] MaxFrequency.m \\
         Given a all frames of realization in the frequencies domain, this function figure out the indices of the frequencies over a certain threshold. 
         \item[3.] IndexToFrequencies.m \\
