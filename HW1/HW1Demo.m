@@ -70,7 +70,7 @@ title("Path of the submarine");
 t = linspace(0, 1, size(PeakingPoints, 2));
 QueryPoints = linspace(0, 1, 100);
 PathX = interpn(t, PeakingPoints(1, :), QueryPoints, "spline");
-PathY = interpn(t, PeakingPoints(2, :), QueryPoints, "spline"); 
+PathY = interpn(t, PeakingPoints(2, :), QueryPoints, "spline");
 PathZ = interpn(t, PeakingPoints(3, :), QueryPoints, "spline");
 hold on;
 plot3(PathX(end), PathY(end), PathZ(end), "*r");

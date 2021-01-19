@@ -293,7 +293,7 @@ The process of identifying the path requires the following procedures
 
 \section{MATLAB Functions}
     \begin{enumerate}
-        \item[1.] ReconstructAllRealiazation.m \\
+        \item[1.] ReconstructAllRealization.m \\
         Function accepts a shifted series of signal in the Fourier space, and it will reconstruct the signal use Inverse Fourier Transform.  
         \item[2.] MaxFrequency.m \\
         Given a all frames of realization in the frequencies domain, this function figure out the indices of the frequencies over a certain threshold. 
@@ -305,6 +305,8 @@ The process of identifying the path requires the following procedures
         For all realizations in 
         \item[6.] BestGaussianFilter.m \\
         Given the list of indices representing the frequencies that is over a given threshold, it will return a Gaussian Filter, which is a 3D tensor having the same size as each realization in the spatial domain. 
+        \item [7.] HW1Demo.m \\
+        This is the main file that should be run to execute all 4 algorithms described in this paper and it will produce all the plots.
     \end{enumerate}
 
 
