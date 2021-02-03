@@ -11,4 +11,4 @@ plot(x, signal)
 figure(2)
 plot(k/(2*pi), abs(signalFFTShifted));
 
-xfft = fftshift(x)
+xfft = fftshift(x);

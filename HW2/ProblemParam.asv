@@ -11,7 +11,7 @@ classdef ProblemParam < handle
         BPM;         % Beats Per minutes OR Bars per minites. (Depending on caller's input)
         
         TimeVec;     % The Time vector for the whole auidio data. 
-        Hz;          % The frequencies vector for the whole audio data. 
+        Hz;   
     end
     
     methods
