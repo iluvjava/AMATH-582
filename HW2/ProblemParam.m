@@ -27,9 +27,12 @@ classdef ProblemParam < handle
         end
         
         
-        function [chunk, timevec, hz]= getChunk(this, i)
-           % chunk: float vector, audio data. 
-           % timevec: spatial time domain vector. 
+        function [chunk, timevec, hz] = getChunk(this, i)
+           % Get chunks according to BPM. 
+           % chunk:     
+           %    float vector, audio data. 
+           % timevec: 
+           %    spatial time domain vector. 
            
            i     = i - 1; 
            Start = i*this.ChunkSize + 1; 
@@ -54,6 +57,13 @@ classdef ProblemParam < handle
                 hz = hz/(2*pi);
            end           
            
+        end
+        
+        function [chunk, timevec, hz] = slice(this, total, i)
+            % Cut the signal into a total amount of time and then slice out
+            % the ith one only. 
+            
+            
         end
         
         function n = totalChunk(this)

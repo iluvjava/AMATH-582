@@ -11,7 +11,7 @@ classdef ProblemParam < handle
         BPM;         % Beats Per minutes OR Bars per minites. (Depending on caller's input)
         
         TimeVec;     % The Time vector for the whole auidio data. 
-        Hz;   
+        Hz;          % The frequencies vector for the whole audio data. 
     end
     
     methods
@@ -54,6 +54,10 @@ classdef ProblemParam < handle
                 hz = hz/(2*pi);
            end           
            
+        end
+        
+        function [chunk, timevec, hz] = slice(this, start, ed)
+            % 
         end
         
         function n = totalChunk(this)
