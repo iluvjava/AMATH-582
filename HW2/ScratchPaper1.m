@@ -63,6 +63,7 @@ pcolor(t, hzvec, m); shading interp; title("first 4 bars");
 %  Preparing parameters.
 CHUNK = 1;
 p = ProblemParam(126/8, "GNR.m4a");
+
 %%
 % -------------------------------------------------------------------------
 % 1. Construct all parameters needed for the music. 

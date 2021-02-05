@@ -1,4 +1,4 @@
-function [specMatrix, hzvec, t] = CreateSpectrogram(signal, tvec, p, FilterFunc)
+function [specMatrix, hzvec, t] = CreateSpectrogram(signal, tvec, sp, FilterFunc)
     % returns a matrix, which is ready to be displayed via pcolor. 
     % Matrix columns are stacked with frequencies vector. 
     % signal: 
@@ -7,35 +7,34 @@ function [specMatrix, hzvec, t] = CreateSpectrogram(signal, tvec, p, FilterFunc)
     %   An instance of the class: SpectroGram, it contains the parameters
     %   we need for the visualization.
     
-    chunkation = p.N;
-    filterWidth = p.Width; 
-    freqthreshold = p.FreqCutoff;
+    chunkation = sp.N;
+    filterWidth = sp.Width; 
+    freqthreshold = sp.FreqCutoff;
     hzvec = TVecToHz(tvec);
     dt = (max(tvec) - min(tvec))/chunkation;
     
-    
-    
+    low = freqthreshold(1); high = freqthreshold(2);
+    indexStart = find(hzvec > low); indexStart = indexStart(1);
+    indexEnd = find(hzvec > high); indexEnd = indexEnd(1);
     
     tstart = tvec(1);
     for II = 0: chunkation - 1
         F = FilterFunc(tstart + II*dt + dt/2, filterWidth*dt, tvec);
         signalFiltered = F.*signal;
         signalFilteredFFTshifted = fftshift(fft(signalFiltered));
-        specMatrix(:, II + 1) = signalFilteredFFTshifted;
+        specMatrix(:, II + 1) = signalFilteredFFTshifted(indexStart: indexEnd);
         t(II + 1) = tstart + II*dt + dt/2;
     end
     specMatrix = abs(specMatrix)./max(abs(specMatrix), [], 1);
     specMatrix = log(specMatrix + 1);  % Put into log space. 
     
-    low = freqthreshold(1); high = freqthreshold(2);
-        
-    indexStart = find(hzvec > low); indexStart = indexStart(1);
-    indexEnd = find(hzvec > high); indexEnd = indexEnd(1);
+    
+    % specMatrix = specMatrix(indexStart: indexEnd, :);
     hzvec = hzvec(indexStart: indexEnd);
-    specMatrix = specMatrix(indexStart: indexEnd, :);
+   
     
     % Assign into the parameter object, state mutated. 
-    p.Spec = specMatrix; 
-    p.Hz = hzvec; 
-    p.Tvec = t;
+    sp.Spec = specMatrix; 
+    sp.Hz = hzvec; 
+    sp.Tvec = t;
 end

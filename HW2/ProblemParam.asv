@@ -27,37 +27,50 @@ classdef ProblemParam < handle
         end
         
         
-        function [chunk, timevec, hz]= getChunk(this, i)
-           % chunk: float vector, audio data. 
-           % timevec: spatial time domain vector. 
-           
-           i     = i - 1; 
-           Start = i*this.ChunkSize + 1; 
-           Start = floor(Start);
-           End   = (i + 1)*this.ChunkSize; 
-           End   = min(length(this.AudioData), ceil(End));
-           chunk = this.AudioData(Start: End);
-           chunk = chunk.';
-           if nargout >= 2
+        function [chunk, timevec, hz] = getChunk(this, i)
+            % Get chunks according to BPM, one chunk is one beat. 
+            % chunk:     
+            %    float row vector, sliced from audio data. 
+            % timevec: 
+            %    spatial time domain vector, start with zero. 
+            % hz: 
+            %    The frequencies vector, not shifted. 
+
+            i     = i - 1; 
+            Start = i*this.ChunkSize + 1; 
+            Start = floor(Start);
+            End   = (i + 1)*this.ChunkSize; 
+            End   = min(length(this.AudioData), ceil(End));
+            chunk = this.AudioData(Start: End);
+            chunk = chunk.';
+            if nargout >= 2
                Timespan = length(chunk)*(1/this.SampleRate);
-               timevec = linspace(-Timespan/2, Timespan/2, length(chunk) + 1);
-               timevec = timevec(1: end - 1);
-           end
-           if nargout == 3
-                n = length(chunk);
-                L = Timespan;
-                if mod(n, 2) == 0
-                    hz = (2*pi/L)*[0: n/2 - 1, -n/2: -1];
-                else
-                    hz = (2*pi/L)*[0, 1:(n - 1)/2, -(n - 1)/2:-1];
-                end
-                hz = hz/(2*pi);
-           end           
-           
+               timevec  = linspace(0, Timespan, length(chunk) + 1);
+               timevec  = timevec(1: end - 1);
+            end
+            hz = TVecToHz(timevec);
         end
         
-        function [chunk, timevec, hz] = slice(this, start, ed)
-            % 
+        function [chunk, timevec, hz] = slice(this, i, total)
+            % Cut the signal into a total amount of time and then slice out
+            % the ith one only. 
+            chunkSize = round(length(this.AudioData)/total);
+            timeSpan  = chunkSize*(1/this.SampleRate);
+            timevec   = linspace(0, timeSpan, chunkSize + 1); 
+            timevec   = timevec(1: end - 1);
+            hz        = TVecToHz(timevec);
+            chunk     = this.AudioData((i - 1)*chunkSize + 1: ... 
+                min(i*chunkSize, length(this.AudioData)));
+            chunk     = chunk.';
+        end
+        
+        function [chunk, timevec, hz] = timeSlice(this, startT, endT)
+            startIndex = round(startT*(1/this.SampleRate));
+            endIndex  = round(endT*(1/this.SampleRate));
+            chunkSize = endIndex - endIndex; 
+            timeSpan  = round(endT - startT); 
+            timvec = linspace(startT, endT, )
+            
         end
         
         function n = totalChunk(this)

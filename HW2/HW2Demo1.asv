@@ -42,8 +42,7 @@ subplot(4, 1, 2); plot(fftshift(hz), Normalize(originalHz));
 [m, hzvec, spectroTvec] = CreateSpectrogram(filtered, t, sp, WAVELET);
 subplot(1, 2, 1)
 pcolor(spectroTvec, hzvec, m); shading interp; 
-title(strcat("GNR, bar: ", num2str((CHUNK - 1)*2), ...
-    " to bar: ", num2str(CHUNK*2)));
+title(strcat("GNR, Bars: ", num2str((CHUNK - 1)*2), "to", num2str(CHUNK*2)); 
 
 
 % -------------------------------------------------------------------------
@@ -67,5 +66,4 @@ end
 subplot(1, 2, 2)
 plot(notes, "o");
 title("Unique Tonic Offsets"); xlabel("index"); ylabel("tonic offset");
-
 
