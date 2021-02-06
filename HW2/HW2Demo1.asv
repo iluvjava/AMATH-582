@@ -1,15 +1,15 @@
 %% GNR PRODUCE SPECTROGRAM: 2 BARS EACH
 % Good Parameters for GNR: 
-%   bpm: 126/8, Chunk: 1, chuncation: 32, filterwidth: 2, filter: Gauss
+%   bpm: 126/8, Chunk: 1, chuncation: 128, filterwidth: 4, filter: Gauss
 %   bpm: 126/8, Chunk: 2, chunkation: 16, filterwidth: 2, filter: Guass
 %   bpm: 126/8, Chunk: 3, chunkation: 16, filterwidth: 2, filter: Gauss
 %   bpm: 126/8, Chhnk: 4, chunkation: 16, filterwidth: 2, filter: Gauss
 
-CHUNK = 1;                 % <- Choose which 2 bars of music you want here
-WAVELET = @ShannonFilter;  % <- Change your type of wavelet here.
+CHUNK = 3;                 % <- Choose which 2 bars of music you want here
+WAVELET = @GFilter;  % <- Change your type of wavelet here.
 
 p = ProblemParam(126/8, "GNR.m4a");
-sp = SpectroGram(32, 2, [200 800]);
+sp = SpectroGram(128, 4, [200 800]);
 
 %
 % -------------------------------------------------------------------------
@@ -40,9 +40,11 @@ subplot(4, 1, 2); plot(fftshift(hz), Normalize(originalHz));
 % 1. Visualizing the spectrogram.
 % -------------------------------------------------------------------------
 [m, hzvec, spectroTvec] = CreateSpectrogram(filtered, t, sp, WAVELET);
-subplot(1, 2, 1)
+figure(2); subplot(1, 2, 1)
 pcolor(spectroTvec, hzvec, m); shading interp; 
-title(strcat("GNR, Bars: ", num2str((CHUNK - 1)*2), "to", num2str(CHUNK*2)); 
+title(strcat("GNR, bar: ", num2str((CHUNK - 1)*2), ...
+    " to bar: ", num2str(CHUNK*2)));
+xlabel("time[sec]"); ylabel("Frequencies [Hz]")
 
 
 % -------------------------------------------------------------------------
@@ -66,4 +68,5 @@ end
 subplot(1, 2, 2)
 plot(notes, "o");
 title("Unique Tonic Offsets"); xlabel("index"); ylabel("tonic offset");
+
 

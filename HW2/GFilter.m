@@ -9,6 +9,6 @@ function F = GFilter(center, w, domainvec)
     % domainvec: 
     %       A domain vector represent where the filter filtering. It can be
     %       both in the frequency, or the signal domain. 
-    f = @(x) exp(-(x - center).^2/(w/4)^2);
+    f = @(x) exp(-(x - center).^2/(w*(sqrt(2)/2))^2);
     F = f(domainvec);
 end

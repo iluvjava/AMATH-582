@@ -19,7 +19,7 @@ figure; pcolor(spectroTvec, hzvec, m); shading interp;
 xlabel("Time[sec]"); ylabel("Hz");
 title("The Bass for Floyd");
 
-%% JUST ONE OF THE TIME FRAME TRANSFORMED: FOR BASE
+%% JUST ONE OF THE TIME FRAME TRANSFORMED: FOR BASS
 sp = SpectroGram(64, 4, [50 200]);
 [original, t, hz] = p.timeSlice(8.63, 25.9);
 filtered = OctaveFilter(t, original, 55, 1);

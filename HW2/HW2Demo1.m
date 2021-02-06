@@ -1,15 +1,15 @@
 %% GNR PRODUCE SPECTROGRAM: 2 BARS EACH
 % Good Parameters for GNR: 
-%   bpm: 126/8, Chunk: 1, chuncation: 32, filterwidth: 2, filter: Gauss
+%   bpm: 126/8, Chunk: 1, chuncation: 128, filterwidth: 4, filter: Gauss
 %   bpm: 126/8, Chunk: 2, chunkation: 16, filterwidth: 2, filter: Guass
 %   bpm: 126/8, Chunk: 3, chunkation: 16, filterwidth: 2, filter: Gauss
 %   bpm: 126/8, Chhnk: 4, chunkation: 16, filterwidth: 2, filter: Gauss
 
-CHUNK = 1;                 % <- Choose which 2 bars of music you want here
-WAVELET = @ShannonFilter;  % <- Change your type of wavelet here.
+CHUNK = 1;           % <- Choose which 2 bars of music you want here
+WAVELET = @GFilter;  % <- Change your type of wavelet here.
 
 p = ProblemParam(126/8, "GNR.m4a");
-sp = SpectroGram(32, 2, [200 800]);
+sp = SpectroGram(128, 4, [200 800]);
 
 %
 % -------------------------------------------------------------------------
@@ -30,20 +30,22 @@ Play(p, CHUNK);
 figure(1)
 subplot(4, 1, 1); plot(t, Normalize(filtered));
 filteredHz = fftshift(abs(fft(filtered)));
-subplot(4, 1, 4); plot(fftshift(hz), Normalize(filteredHz));
+subplot(4, 1, 4); plot(hz, Normalize(filteredHz));
 
 subplot(4, 1, 3); plot(t, Normalize(original));
 originalHz = fftshift(abs(fft(original)));
-subplot(4, 1, 2); plot(fftshift(hz), Normalize(originalHz));
+subplot(4, 1, 2); plot(hz, Normalize(originalHz));
+title("Global Frequencies Filtering");
 
 % -------------------------------------------------------------------------
 % 1. Visualizing the spectrogram.
 % -------------------------------------------------------------------------
 [m, hzvec, spectroTvec] = CreateSpectrogram(filtered, t, sp, WAVELET);
-subplot(1, 2, 1)
+figure(2); subplot(1, 2, 1)
 pcolor(spectroTvec, hzvec, m); shading interp; 
 title(strcat("GNR, bar: ", num2str((CHUNK - 1)*2), ...
     " to bar: ", num2str(CHUNK*2)));
+xlabel("time[sec]"); ylabel("Frequencies [Hz]")
 
 
 % -------------------------------------------------------------------------
@@ -65,7 +67,6 @@ for II = 1: length(tonicOffSet)
    
 end
 subplot(1, 2, 2)
-plot(notes, "o");
+plot(notes, "x", "markersize", 20, "linewidth", 4);
 title("Unique Tonic Offsets"); xlabel("index"); ylabel("tonic offset");
-
-
+saveas(gcf, "gnr-spectro", "png");

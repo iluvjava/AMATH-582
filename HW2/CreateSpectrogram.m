@@ -8,7 +8,7 @@ function [specMatrix, hzvec, t] = CreateSpectrogram(signal, tvec, sp, FilterFunc
     %   we need for the visualization.
     
     chunkation = sp.N;
-    filterWidth = sp.Width; 
+    filterWidth = sp.Width;
     freqthreshold = sp.FreqCutoff;
     hzvec = TVecToHz(tvec);
     dt = (max(tvec) - min(tvec))/chunkation;
@@ -26,12 +26,10 @@ function [specMatrix, hzvec, t] = CreateSpectrogram(signal, tvec, sp, FilterFunc
         t(II + 1) = tstart + II*dt + dt/2;
     end
     specMatrix = abs(specMatrix)./max(abs(specMatrix), [], 1);
-    specMatrix = log(specMatrix + 1);  % Put into log space. 
-    
+    specMatrix = log(specMatrix + 1);  % Put into log space.
     
     % specMatrix = specMatrix(indexStart: indexEnd, :);
     hzvec = hzvec(indexStart: indexEnd);
-   
     
     % Assign into the parameter object, state mutated. 
     sp.Spec = specMatrix; 
