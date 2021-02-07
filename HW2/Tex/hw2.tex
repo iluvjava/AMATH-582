@@ -145,7 +145,7 @@
                     \STATE{SpecMatrix(:, II + 1) = Signal}
                     \STATE{SpecMatrix(:, II + 1) = Normalize the II + 1 th row of SpecMatrix, and put it into log scale}
                 \ENDFOR
-                \STATE{\textbf{Output: } Tvec, Hz, SpecMatrix}
+                \STATE{\textbf{Output:} Tvec, Hz, SpecMatrix}
             \end{algorithmic}\caption{Creating Spectrogram with STFT}
         \end{algorithm}
         \par
@@ -162,7 +162,39 @@
 
 \section{Computational Results}
     \subsection{GNR: Notes and Spectrogram}
+        \par\hspace{1.1em}
+        For the clip from GNR (\textit{Sweet Child O' Mine}), a shannon filter located at the interval $[220, 800]$ is applied, it covers the alto an tenor range of the music, the expected range for the guitar.
+        There are 8 bars of music in total, each 2 bars repeats and builds on the same motif, the first 3 sections build on variations, while the 4th one repeats the first 2 bars. 
+        \par
+        After running the routine highted in the previous section, the result is shown in \hyperref[fig:1]{figure 1}. The melody is written on the C\# major key. The music score is: C\#3,C\#4, G\#3, F\#3,F\#4, G\#3, F4, G\#3, the 2 bars is then repeated with variations on the first, second and 4th keys.   
+        \par
+        Computationally, The first bars of music is partitioned into 128 sections, and the Gobar kernel is the Gaussian function with a relative width of 4, this allows the audio to be super-sampled, allowing for an smoother image. Other wavelets for STFT is experimented however Gaussian and Shannon filter was proven to produce the best spectrogram and the most accurate results. 
+
+        \begin{figure}[h]\label{fig:1}
+            \includegraphics[width=12cm]{gnr-spectro.png}
+            \centering
+            \caption{fig:1}
+        \end{figure}
+    \subsection{Floyd: Bass Notes and Spectrogram}
+        \par\hspace{1.1em}
+        The bass of the song ``\textit{Comfortably Numb}'' performs a Basso Obstinate on the G minor scale. A Shannon Filter is used globally to filter out frequencies in the $[50, 200]$ hertz Because that is the expected acoustic range off the instrument. The result is presented in \hyperref[fig:2]{Figure 2}. It shows one bars of the score that is played byt the bass which is repeated through out the audio clip. The music score is: 
+        D1, B1, A1, G1, F1, D1. However, it's unclear whether the key B, and D are presented at the same time to create a harmony. 
+        \par
+        The choice of Wavelet function for the STFT is the shannon Wavelets. The reasons for the shoice is: the bass is in the low frequencies and we want as much information from the signal as possible. In addition gibbs phenomena is not presented in the lower end of the spectrum that we are looking at. Therefore the Shannon Wavelet is chosen to be the Gobar kernel for the audio clip.
+        \par
+        The audio clip is partitioned into 64 sections. (Observe how much bigger it is compare to audio clip); and a relative with of 4 is chosen. The choice is justified by the fact that lower acoustic signal need longer window to identify. 
+        \begin{figure}[h]
+            \centering
+            \includegraphics*[width=0.7\linewidth]{floyd-bass-spectro.png}
+            \caption{figure 2}
+            \label{fig:2}
+        \end{figure}
+    \subsection{Floyd: Guitar Solo and Spectrogram}
+        
     
+    
+
+
 
 \section{Summary and Conclusions}
    

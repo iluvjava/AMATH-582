@@ -41,11 +41,12 @@ title("Global Frequencies Filtering");
 % 1. Visualizing the spectrogram.
 % -------------------------------------------------------------------------
 [m, hzvec, spectroTvec] = CreateSpectrogram(filtered, t, sp, WAVELET);
-figure(2); subplot(1, 2, 1)
+figure(2); 
+subplot(1, 2, 1);
 pcolor(spectroTvec, hzvec, m); shading interp; 
 title(strcat("GNR, bar: ", num2str((CHUNK - 1)*2), ...
     " to bar: ", num2str(CHUNK*2)));
-xlabel("time[sec]"); ylabel("Frequencies [Hz]")
+xlabel("time[sec]"); ylabel("Frequencies [Hz]");
 
 
 % -------------------------------------------------------------------------
@@ -66,7 +67,9 @@ for II = 1: length(tonicOffSet)
    end
    
 end
-subplot(1, 2, 2)
+h = subplot(1, 2, 2);
 plot(notes, "x", "markersize", 20, "linewidth", 4);
 title("Unique Tonic Offsets"); xlabel("index"); ylabel("tonic offset");
+set(h, "Ytick" , [1, 3, 5, 6, 8, 10, 11, 13, 15, 17, 18], ... 
+    "YtickLabel", ["C#", "D#", "F", "F#", "G#", "A#", "C", "C#", "D#", "F", "F#"]);
 saveas(gcf, "gnr-spectro", "png");

@@ -30,7 +30,7 @@ xlabel("Time[sec]"); ylabel("Hz");
 title("One bar of bass for Floyd");
 
 % Figuring out the notes
-[tonicOffSet, peakingFreq] = PeakingFrequencies(sp, 261.63);
+[tonicOffSet, peakingFreq] = PeakingFrequencies(sp, 110);
 notes = [];
 for II = 1: length(tonicOffSet)
     
@@ -44,10 +44,13 @@ for II = 1: length(tonicOffSet)
    end
    
 end
-subplot(1, 2, 2)
-plot(notes, "o");
+h = subplot(1, 2, 2);
+plot(notes, "x", "markersize", 20, "linewidth", 4);
 title("Unique Tonic Offsets"); xlabel("index"); ylabel("tonic offset");
+set(h, "Ytick" , [-5 -3 -2  0  1 2], ... 
+    "YtickLabel", ["D" "F" "G" "A" "A#" "B"]);
 
+saveas(gcf, "floyd-bass-spectro", "png");
 %% WHOLE SONG GABOR TRANSFORM: FOR THE GUIARGER: FOR GUITAR
 sp = SpectroGram(64 , 2, [400, 1600]);
 [original, t, hz] = p.slice(1, 1);
