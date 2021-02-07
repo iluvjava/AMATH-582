@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.13)  6 FEB 2021 16:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.13)  6 FEB 2021 18:02
 entering extended mode
 **c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.tex
 (c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.tex
@@ -677,47 +677,55 @@ Overfull \hbox (15.0pt too wide) detected at line 150
  []
 
 [2] [3]
-<gnr-spectro.png, id=114, 421.575pt x 316.0608pt>
+<gnr-spectro.png, id=116, 421.575pt x 316.0608pt>
 File: gnr-spectro.png Graphic file (type png)
 <use gnr-spectro.png>
 Package pdftex.def Info: gnr-spectro.png  used on input line 174.
 (pdftex.def)             Requested size: 341.43306pt x 255.98373pt.
-<floyd-bass-spectro.png, id=116, 421.575pt x 316.0608pt>
+<floyd-bass-spectro.png, id=120, 421.575pt x 316.0608pt>
 File: floyd-bass-spectro.png Graphic file (type png)
 <use floyd-bass-spectro.png>
 Package pdftex.def Info: floyd-bass-spectro.png  used on input line 188.
-(pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
+(pdftex.def)             Requested size: 227.62204pt x 170.65582pt.
+<floyd-bass-spectro-shannon.png, id=122, 421.575pt x 316.0608pt>
+File: floyd-bass-spectro-shannon.png Graphic file (type png)
+<use floyd-bass-spectro-shannon.png>
+Package pdftex.def Info: floyd-bass-spectro-shannon.png  used on input line 189.
+(pdftex.def)             Requested size: 227.62204pt x 170.65582pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: Empty bibliography on input line 202.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 212.
-[4 <c:/Users/victo/source/repos/AMATH-582/HW2/Tex/gnr-spectro.png (PNG copy)>] [5 <c:/Users/victo/source/repos/AMATH-582/HW2/Tex/floyd-bass-spectro.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 212.
+[4 <c:/Users/victo/source/repos/AMATH-582/HW2/Tex/gnr-spectro.png (PNG copy)>]
+<floyd-all-guitar.png, id=132, 1163.0652pt x 661.0296pt>
+File: floyd-all-guitar.png Graphic file (type png)
+<use floyd-all-guitar.png>
+Package pdftex.def Info: floyd-all-guitar.png  used on input line 202.
+(pdftex.def)             Requested size: 328.82707pt x 186.8925pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 220.
+ [5 <c:/Users/victo/source/repos/AMATH-582/HW2/Tex/floyd-bass-spectro.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW2/Tex/floyd-bass-spectro-shannon.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW2/Tex/floyd-all-guitar.png (PNG copy)>] [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 220.
  (c:/Users\victo\source\repos\AMATH-582\HW2\Tex\hw2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 212.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 212.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 220.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 220.
 Package rerunfilecheck Info: File `hw2.out' has not changed.
-(rerunfilecheck)             Checksum: F4C50E2809E0BDF5BBFCFEFD77348F5D;880.
+(rerunfilecheck)             Checksum: CFD861CBDECB2C96BF6A253AA790482A;880.
 Package logreq Info: Writing requests to 'hw2.run.xml'.
 \openout1 = `hw2.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 15294 strings out of 492484
- 260152 string characters out of 3121601
- 750602 words of memory out of 3000000
- 19380 multiletter control sequences out of 15000+200000
+ 15509 strings out of 492484
+ 264530 string characters out of 3121601
+ 750765 words of memory out of 3000000
+ 19589 multiletter control sequences out of 15000+200000
  12456 words of font info for 48 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,12n,34p,869b,743s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,12n,45p,869b,1138s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on c:/Users\victo\source\repos\AMATH-582\HW2\Tex\hw2.pdf (5 pages, 564674 bytes).
+Output written on c:/Users\victo\source\repos\AMATH-582\HW2\Tex\hw2.pdf (6 pages, 4077267 bytes).
 PDF statistics:
- 189 PDF objects out of 1000 (max. 8388607)
- 51 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 207 PDF objects out of 1000 (max. 8388607)
+ 55 named destinations out of 1000 (max. 500000)
+ 135 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -2,7 +2,7 @@
 \BOOKMARK [1][-]{section.2}{Theoretical Background}{}% 2
 \BOOKMARK [1][-]{section.3}{Algorithm Implementation and Development}{}% 3
 \BOOKMARK [2][-]{subsection.3.1}{Time to Frequencies Domain Conversion}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{Creation of Spectrogram Using STFT}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Creation of spectrogram Using STFT}{section.3}% 5
 \BOOKMARK [2][-]{subsection.3.3}{Global Frequencies Filtering and Audio Truncations}{section.3}% 6
 \BOOKMARK [1][-]{section.4}{Computational Results}{}% 7
 \BOOKMARK [2][-]{subsection.4.1}{GNR: Notes and Spectrogram}{section.4}% 8

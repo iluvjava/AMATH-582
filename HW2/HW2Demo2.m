@@ -1,6 +1,6 @@
 %% SETTING THINGS UP
 
-WAVELET = @GFilter;
+WAVELET = @ShannonFilter;
 p  = ProblemParam(64/32, "Floyd.m4a");
 
 %% WHOLE SONG GABOR TRANSFORM: FOR BASS
@@ -45,17 +45,17 @@ for II = 1: length(tonicOffSet)
    
 end
 h = subplot(1, 2, 2);
-plot(notes, "x", "markersize", 20, "linewidth", 4);
+plot(notes, "x", "markersize", 10, "linewidth", 4);
 title("Unique Tonic Offsets"); xlabel("index"); ylabel("tonic offset");
 set(h, "Ytick" , [-5 -3 -2  0  1 2], ... 
     "YtickLabel", ["D" "F" "G" "A" "A#" "B"]);
 
 saveas(gcf, "floyd-bass-spectro", "png");
 %% WHOLE SONG GABOR TRANSFORM: FOR THE GUIARGER: FOR GUITAR
-sp = SpectroGram(64 , 2, [400, 1600]);
+sp = SpectroGram(300, 2, [400, 1600]);
 [original, t, hz] = p.slice(1, 1);
 filtered = OctaveFilter(t, original, 440, 3);
-playblocking(audioplayer(Normalize(filtered), p.SampleRate));
+% playblocking(audioplayer(Normalize(filtered), p.SampleRate));
 [m, hzvec, spectroTvec] = CreateSpectrogram(filtered, t, sp, WAVELET);
 figure; pcolor(spectroTvec, hzvec, m); shading interp; 
 xlabel("Time[sec]"); ylabel("Hz");

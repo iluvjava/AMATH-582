@@ -50,7 +50,7 @@
 }
 
 % Title content
-\title{AMATH 582 Homework 2: Gobar Transform and Spectrogram for Audio Analysis}
+\title{AMATH 582 Homework 2: Gabor Transform and Spectrogram for Audio Analysis}
 \author{Hongda Li}
 \date{\today}
 
@@ -60,23 +60,23 @@
 
 % Abstract
 \begin{abstract}
-   In this paper, we are interested in applying the principal of Gobar filtering on real world audio data. Our objective is to utilize different filtering techniques using wavelets to extract out sounds for certain instrument in the audio data. In addition, we also discuss the best way of choosing parameters for Gobar filtering to get the best visualizations for the Spectrogram. The results we present are musical notes of the guitar solo and bass solo for 2 rock songs. 
+   In this paper, we are interested in applying the principal of Gabor filtering on real world audio data. Our objective is to utilize different filtering techniques using wavelets to extract out sounds for certain instrument in the audio data. In addition, we also discuss the best way of choosing parameters for Gabor filtering to get the best visualizations for the spectrogram. The results we present are musical notes of the guitar solo and bass solo for 2 rock songs. 
 \end{abstract}
 
 
 \section{Introduction and Overview}
     
     \par\hspace{1.1em}
-    The objective is to reproduce the musical scores for a clip taken from the start of the song ``\textit{Sweet Child O' Mine}"  by Guns N' Roses and a guitar solo from \textit``{Comfortably Numb}" by Pink Floyd. We deploy the technique of first using a Shannon Filter on the whole audio to filter out only the frequencies for the instruments that we are interested in, using common knowledge and some basics in music, and then we use Gobar transform to find the best temporal and frequencies resolutions. Finally, we present a way to visualize the spectrogram, and an algorithm to identify the notes with some basics in music theory. In addition, we also explored ways of truncating the audio data so that it runs more efficiently.
+    The objective is to reproduce the musical scores for a clip taken from the start of the song ``\textit{Sweet Child O' Mine}"  by Guns N' Roses and a guitar solo from \textit``{Comfortably Numb}" by Pink Floyd. We deploy the technique of first using a Shannon Filter on the whole audio to filter out only the frequencies for the instruments that we are interested in, using common knowledge and some basics in music, and then we use Gabor transform to find the best temporal and frequencies resolutions. Finally, we present a way to visualize the spectrogram, and an algorithm to identify the notes with some basics in music theory. In addition, we also explored ways of truncating the audio data so that it runs more efficiently.
 
 \section{Theoretical Background}
     \par\hspace{1.1em}
-    The Gobar transform consider the additional usage of a kernel function in the time frequencies, preferably a function that has bounded L2 Norm over the real complex domain.
+    The Gabor transform consider the additional usage of a kernel function in the time frequencies, preferably a function that has bounded L2 Norm over the real complex domain. And this is discussed more in details in \cite{kutz_2013_pg324}, we will summarize the important piece here. 
     \begin{equation*}\tag{1}\label{eqn:1}
         g_{\tau, w}(\tau) = \exp(i\omega \tau)g(\tau - t)
     \end{equation*}
     \par
-    $\omega$ is the multiplier for the Fourier Kernel. $g$ is a bounded function for filtering signal near $t$. A specific case of the Gobar transform is called the Short Time Fourier Transform(STFT), where we consider a real symmetric matrix to be the kernel. Together with the function $f(\tau)$ representing the signal, we have: 
+    $\omega$ is the multiplier for the Fourier Kernel. $g$ is a bounded function for filtering signal near $t$. A specific case of the Gabor transform is called the Short Time Fourier Transform(STFT), where we consider a real symmetric matrix to be the kernel. Together with the function $f(\tau)$ representing the signal, we have: 
     \begin{equation*}\tag{2}\label{eqn:2}
         \widetilde{f_g}(t, w) = \int_{-\infty}^{\infty} f(\tau)g(\tau - t)\exp(-i\omega t) d\tau
     \end{equation*}
@@ -127,7 +127,7 @@
         \par
         Notice that, depending on the parity of the width of the signal, we need to partition the corresponding frequencies domain differently. In the case of even number of partitions, we want $0$ appears at index $n/2-1$ after the fftshift, assuming index start with $0$, and we want $0$ to be at index $\lfloor n/2\rfloor$ after fftshift assuming index starts with $0$. Most importantly, we need to divide it by $2\pi$ to actually obtain the frequencies for the audio.
         
-    \subsection{Creation of Spectrogram Using STFT}
+    \subsection{Creation of spectrogram Using STFT}
         \par\hspace{1.1em}
         The next part is the creation of the spectrogram. We implement the width of the filter to be relative to the window's size, and the window's size is simply the total length divides by the number of partitions we want. This is convenient when we sync up the STFT with the bars of music, which helps us get better results and visualization.
         \begin{algorithm}\label{alg:2}
@@ -146,17 +146,17 @@
                     \STATE{SpecMatrix(:, II + 1) = Normalize the II + 1 th row of SpecMatrix, and put it into log scale}
                 \ENDFOR
                 \STATE{\textbf{Output:} Tvec, Hz, SpecMatrix}
-            \end{algorithmic}\caption{Creating Spectrogram with STFT}
+            \end{algorithmic}\caption{Creating spectrogram with STFT}
         \end{algorithm}
         \par
-        This algorithm (\hyperref[alg:1]{Algorithm 2}) is generic for all audio and wavelet function: A, and $g$. The variable ``RelWidth'' represents the with of the wavelet relative to the with of the partition of the signal in time domain, this adds more flexibility for simple oversampling, in addition, if ``N $\times$ RelWidth": is set to be a constant, then the amount of oversampling is kept. 
+        This algorithm (\hyperref[alg:1]{Algorithm 2}) is generic for all audio and wavelet function: A, and $g$. The variable ``RelWidth:W'' represents the with of the wavelet relative to the with of the partition of the signal in time domain, this adds more flexibility for simple oversampling, in addition, if ``N $\times$ W": is set to be a constant, then the amount of oversampling is kept unchanged
         \par
         In addition, extra processing (line 12 in \hyperref[alg:2]{Algorithm 2}) is involved to make better presentation on the spectrogram, trimming of frequencies that is negative and outside the range of the instrument we are interested in, and present it on a lot scale to scale down the relative sizes of the frequencies constant making the spectrogram more invisible. 
     \subsection{Global Frequencies Filtering and Audio Truncations}
         \par\hspace{1.1em}
         By common knowledge, music are written in bars of notes in Chromatic Scale or the Diatonic Scales for pop songs (Diatonic Scale is in the Chromatic Scale). Each note in Chromatic Scale increments by a multiplier of $2^{1/12}$ in term of frequencies (A semi-tone). An instrument such as guitar usually operates inside a range of 3 octaves (12 Semi-tone per octave). 
         \par
-        The reasoning of filtering out the frequencies for just the instrument makes us easier to identify particular instruments using the Spectrogram. Implementations wise this is achieved via applying a Shannon Filter to the FFT of an audio section we are interested in, and then Inverse Transform it back. The process acts as a band pass filter and it isolate one of the instruments from other instruments. 
+        The reasoning of filtering out the frequencies for just the instrument makes us easier to identify particular instruments using the spectrogram. Implementations wise this is achieved via applying a Shannon Filter to the FFT of an audio section we are interested in, and then Inverse Transform it back. The process acts as a band pass filter and it isolate one of the instruments from other instruments. 
         \par
         Audio is truncated either by seconds, or by BPM (Beats per minute), both are implemented. The reasoning is that, music repeats around a theme with some variations, and they are located in sections of bars. Truncating the music in terms of bars reduce loads for computations, it also makes better visualization for the spectrogram. 
 
@@ -168,44 +168,52 @@
         \par
         After running the routine highted in the previous section, the result is shown in \hyperref[fig:1]{figure 1}. The melody is written on the C\# major key. The music score is: C\#3,C\#4, G\#3, F\#3,F\#4, G\#3, F4, G\#3, the 2 bars is then repeated with variations on the first, second and 4th keys.   
         \par
-        Computationally, The first bars of music is partitioned into 128 sections, and the Gobar kernel is the Gaussian function with a relative width of 4, this allows the audio to be super-sampled, allowing for an smoother image. Other wavelets for STFT is experimented however Gaussian and Shannon filter was proven to produce the best spectrogram and the most accurate results. 
+        Computationally, The first bars of music is partitioned into 128 sections, and the Gabor kernel is the Gaussian function with a relative width of 4, this allows the audio to be super-sampled, allowing for an smoother image. Other wavelets for STFT is experimented however Gaussian and Shannon filter was proven to produce the best spectrogram and the most accurate results. 
 
         \begin{figure}[h]\label{fig:1}
             \includegraphics[width=12cm]{gnr-spectro.png}
             \centering
-            \caption{fig:1}
+            \caption{GNR: Spectrogram of the Guitar, Gaussian Wavelet}
         \end{figure}
     \subsection{Floyd: Bass Notes and Spectrogram}
         \par\hspace{1.1em}
-        The bass of the song ``\textit{Comfortably Numb}'' performs a Basso Obstinate on the G minor scale. A Shannon Filter is used globally to filter out frequencies in the $[50, 200]$ hertz Because that is the expected acoustic range off the instrument. The result is presented in \hyperref[fig:2]{Figure 2}. It shows one bars of the score that is played byt the bass which is repeated through out the audio clip. The music score is: 
+        The bass of the song ``\textit{Comfortably Numb}'' performs a Basso Obstinate on the G minor scale. A Shannon Filter is used globally to filter out frequencies in the $[50, 110]$ hertz Because that is the expected acoustic range off the instrument. The result is presented in \hyperref[fig:2]{Figure 2}. It shows one bars of the score that is played byt the bass which is repeated through out the audio clip. The music score is: 
         D1, B1, A1, G1, F1, D1. However, it's unclear whether the key B, and D are presented at the same time to create a harmony. 
         \par
-        The choice of Wavelet function for the STFT is the shannon Wavelets. The reasons for the shoice is: the bass is in the low frequencies and we want as much information from the signal as possible. In addition gibbs phenomena is not presented in the lower end of the spectrum that we are looking at. Therefore the Shannon Wavelet is chosen to be the Gobar kernel for the audio clip.
+        For this example, both the Gaussian and the Shannon Wavelet function is deployed. Take note that \hyperref[fig:2]{Figure 2 Left} shows the spectrogram when the Guassian Wavelet is used and \hyperref[fig:2]{Figure 2 Right} shows the spectrogram when Shannon Wavelet is used. Both Clearly identifies the same frequencies content, however it visually Shannon Wavelet produces sharper image. 
         \par
         The audio clip is partitioned into 64 sections. (Observe how much bigger it is compare to audio clip); and a relative with of 4 is chosen. The choice is justified by the fact that lower acoustic signal need longer window to identify. 
         \begin{figure}[h]
-            \centering
-            \includegraphics*[width=0.7\linewidth]{floyd-bass-spectro.png}
-            \caption{figure 2}
+            
+            \includegraphics*[width=8cm]{floyd-bass-spectro.png}
+            \includegraphics*[width=8cm]{floyd-bass-spectro-shannon.png}
+            \caption{Floyd's Bass, Gaussian and Shannon Wavelet}
             \label{fig:2}
         \end{figure}
-    \subsection{Floyd: Guitar Solo and Spectrogram}
         
-    
-    
+    \subsection{Floyd: Guitar Solo and Spectrogram}
+        \par\hspace{1.1em}
+        In this section, we will present the spectrogram for the guitar solo in the audio clip. However, due to the virtuosity of the guitar soloist, the music score cannot be presented. More sophisticated algorithm is need to identify complex harmony and melodic contour, unfortunate it's not as simple as STFT. 
+        \par
+        The routine is run on the whole music clip for Floyd's ``Comfortably Numb'' on the acoustic range of the guitar via global filtering, and the results in shown in: \hyperref[fig:3]{Figure 3}. Please observe the complexity of the melodic contour, and how simple the previous 2 examples are. In this case, multiple notes seems to be played at the same time. The notes are Legato instead of staccato, creating significant challenge for reading the notes from the spectrogram. Simply trick by pulling out the frequencies with the maximal magnitude is not feasible anymore. 
 
-
+        \begin{figure}[h]
+        \centering
+            \includegraphics*[width=0.7\linewidth]{floyd-all-guitar.png}    
+            \caption{Floyd whole Song Guitar with Shannon Wavelet}
+            \label{fig:3}
+        \end{figure}
 
 \section{Summary and Conclusions}
-   
+    \par\hspace{1.1em}
+    The algorithmic frameworks for the STFT can be easily implemented in high level scientific programming language. The visualization process is however, where mostly the works comes in. To get the best out of the digital signal, we need domain specific knowledge for analysis, trial errors to figure out the best window with and discretization of the signal. However, it also shows us that, when dealing with more complex melodic contour and musical articulations, significant challenge is placed on the process of interpreting the spectrogram as music score.
 % References
 \printbibliography
-
+    
 % Appendices
 \begin{appendices}
 
 \section{MATLAB Functions}
-
     
 \end{appendices}
 

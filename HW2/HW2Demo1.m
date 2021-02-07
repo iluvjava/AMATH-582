@@ -68,7 +68,7 @@ for II = 1: length(tonicOffSet)
    
 end
 h = subplot(1, 2, 2);
-plot(notes, "x", "markersize", 20, "linewidth", 4);
+plot(notes, "x", "markersize", 10, "linewidth", 4);
 title("Unique Tonic Offsets"); xlabel("index"); ylabel("tonic offset");
 set(h, "Ytick" , [1, 3, 5, 6, 8, 10, 11, 13, 15, 17, 18], ... 
     "YtickLabel", ["C#", "D#", "F", "F#", "G#", "A#", "C", "C#", "D#", "F", "F#"]);
