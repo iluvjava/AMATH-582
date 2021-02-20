@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber hw2"] 1612662585 "hw2.bcf" "hw2.bbl" "hw2" 1612663649
+["biber hw2"] 1612662585 "hw2.bcf" "hw2.bbl" "hw2" 1612668841
   "hw2.bcf" 1612663356 99453 945bf47f86b96b4ec9944704c5c13c18 "pdflatex"
   "references.bib" 1612662455 1510 a288df92e4304fab772b5b68e5f8bf37 ""
   (generated)
   "hw2.bbl"
   "hw2.blg"
-["pdflatex"] 1612663354 "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.tex" "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.pdf" "hw2" 1612663649
+["pdflatex"] 1612663354 "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.tex" "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.pdf" "hw2" 1612668841
   "C:/Users/victo/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1600022045 3773315 a9f1a8316b2b44cc5b9c38efa414393e ""
   "C:/Users/victo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map" 1610680624 79702 d20d453c87df744213d3a678b0e13af2 ""
   "C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -128,7 +128,7 @@
   "C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/tex/latex/tools/xspace.sty" 1573424844 4546 4007c8ab6aedb07a7bba6acedadad416 ""
   "C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.aux" 1612663356 5196 a0a934b5784232778bbd891e90388e79 ""
-  "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.tex" 1612663648 16332 9ceb94370460f035668d81c857b80ede ""
+  "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.tex" 1612668838 16332 9ceb94370460f035668d81c857b80ede ""
   "floyd-all-guitar.png" 1612661272 3291691 69cb88a6cfa32c1b8e4e61974c305a11 ""
   "floyd-bass-spectro-shannon.png" 1612663317 222400 133788717e5eb0591409c3449531a270 ""
   "floyd-bass-spectro.png" 1612663232 156221 9dc8036d184ddc9c9c4f9af46c9e5b84 ""
@@ -137,13 +137,13 @@
   "hw2.bbl" 1612662587 1705 3b9296a466a833148854750ab96654e5 "biber hw2"
   "hw2.out" 1612663356 880 cfd861cbdecb2c96bf6a253aa790482a "pdflatex"
   "hw2.run.xml" 1612663356 2298 fee8db4e4ff8951882fe4198cbb11862 "pdflatex"
-  "hw2.tex" 1612663648 16332 9ceb94370460f035668d81c857b80ede ""
+  "hw2.tex" 1612668838 16332 9ceb94370460f035668d81c857b80ede ""
   (generated)
-  "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.log"
-  "hw2.run.xml"
-  "hw2.pdf"
-  "hw2.out"
-  "hw2.log"
-  "hw2.aux"
-  "hw2.bcf"
   "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.pdf"
+  "hw2.pdf"
+  "hw2.aux"
+  "hw2.out"
+  "c:/Users/victo/source/repos/AMATH-582/HW2/Tex/hw2.log"
+  "hw2.log"
+  "hw2.run.xml"
+  "hw2.bcf"
