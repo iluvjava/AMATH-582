@@ -61,8 +61,7 @@ classdef Tracer < handle
                     this.SearchRange(2)...
                     );
                 
-                disp(II);
-                disp(Displacement);
+                disp(strcat("Frame: ", num2str(II), " Displacement: ", num2str(Displacement)));
                 
                 coords(:, II) = coords(:, II - 1) + Displacement';
                 NewX = coords(1, II); NewY = coords(2, II);

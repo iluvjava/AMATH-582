@@ -2,7 +2,7 @@ function searcher = TracerSettings(cam, instance)
    % Gave the camera, and the instance of the tesst, and the mono video
    % This functeion will return a tracer Setting
     loaded = load(strcat("data/cam", num2str(cam), "_", num2str(instance), ".mat"));
-    originalVid = loaded.(strcat("vidFrames", num2str(cam), "_", num2str(instance)));
+    originalVid = loaded.(strcat("vidFrames1", num2str(cam)))
     switch cam
         case 1
             switch instance 
@@ -29,7 +29,6 @@ function searcher = TracerSettings(cam, instance)
                     PositionY = 370;
                     box = [60, 50];
                     threshold = 0.0;
-                    searchRange = [30, 30];
             end
         case 2
             switch instance 
@@ -77,13 +76,11 @@ function searcher = TracerSettings(cam, instance)
                     PositionY = 340;
                     box = [60, 80];
                     threshold = 0.0;
-                    searchRange = [30, 30];
                 case 4
                     PositionX = 180;
                     PositionY = 350;
                     box = [60, 80];
                     threshold = 0.0;
-                    searchRange = [30, 30];
             end
     end
     searcher = Tracer(originalVid, box, [PositionX, PositionY], searchRange, threshold);
