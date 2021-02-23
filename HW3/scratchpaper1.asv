@@ -7,8 +7,7 @@ end
 figure(1);
 subplot;
 %%
-figure;
-Vid = vidFrames3_4; 
+Vid = vidFrames1_4; 
 for II = 1: size(Vid, 4)
    imshow(Vid(:, :, :, II));
    drawnow
@@ -34,6 +33,18 @@ figure(2);
 for II = 2: 10
     imshow(Vid(:, :, II) - Vid(:, :, II - 1))
     drawnow
+end
+
+imshow(Vid(:, :, II) - Vid(:, :, II - 2))
+
+
+function res = BoxBlur(m)
+    % Given a matrix, treat it as an image and give it a box blur
+    res = convn(m, ones(10, 10)/100);
+end
+
+function FFTBlur(m, stepSize)
+    
 end
 
 %% The frames are out of sync 

@@ -86,6 +86,6 @@ function searcher = TracerSettings(cam, instance)
                     searchRange = [30, 30];
             end
     end
-    searcher = Tracer(originalVid, box, [PositionX, PositionY], searchRange, threshold);
+    searcher = Tracer(originalVid, box, [PositionX, PositionY], searchRange);
 end
 

@@ -5,7 +5,6 @@ classdef Tracer < handle
     
     properties
         OriginalVid;    % The original video
-        Threshold;      % The threshold for filtering out the bright spot
         MonoVid;        % The video in mono.  
         Item;           % The item in frame, which contain the object(the moving can) in mono vid.
         InitialPosition % The initial top top left corner of the frame. 
@@ -16,15 +15,14 @@ classdef Tracer < handle
     end
     
     methods
-        function this = Tracer(video, box, startingPosi, searchRange, threshold)
+        function this = Tracer(video, box, startingPosi, searchRange)
             % video: w x d x 3 x f RGB video
             % box: w x d, the box containing the can on the mono vid
             % threshold: What kind of threshold for filtering out the
             % bright spot from the gray scale image. 
             
             this.OriginalVid = video;
-            this.MonoVid     = ThresholdMono(video, threshold);
-            this.Threshold   = threshold;
+            this.MonoVid     = Mono(video);
             this.Item = this.MonoVid(startingPosi(1): startingPosi(1) + box(1),...
                                      startingPosi(2): startingPosi(2) + box(2), 1);
             this.Box = box;
@@ -48,11 +46,11 @@ classdef Tracer < handle
         end
         
         function coords = traceRoute(this)
-            MonoV = this.MonoVid;
-            coords = zeros(2, size(MonoV, 3));
+            Video = this.MonoVid;
+            coords = zeros(2, size(Video, 3));
             coords(:, 1) = [this.InitialPosition(1); this.InitialPosition(2)];
-            for II = 2: size(MonoV, 3)
-                Frame = MonoV(:, :, II);
+            for II = 2: size(Video, 3)
+                Frame = double(Video(:, :, II));
                 Displacement = FrameSearch(Frame, ...
                     this.Item, ...
                     this.StartingPosition(1), ...
@@ -62,7 +60,6 @@ classdef Tracer < handle
                     );
                 
                 disp(strcat("Frame: ", num2str(II), " Displacement: ", num2str(Displacement)));
-                
                 coords(:, II) = coords(:, II - 1) + Displacement';
                 NewX = coords(1, II); NewY = coords(2, II);
                 this.StartingPosition(1) = NewX;

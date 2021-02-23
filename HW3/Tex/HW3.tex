@@ -1,0 +1,253 @@
+\documentclass{article}
+
+% If you're new to LaTeX, here's some short tutorials:
+% https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes
+% https://en.wikibooks.org/wiki/LaTeX/Basics
+
+% Formatting
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[titletoc,title]{appendix}
+
+% Math
+% https://www.overleaf.com/learn/latex/Mathematical_expressions
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
+\usepackage{amsmath,amsfonts,amssymb,mathtools}
+
+% Images
+% https://www.overleaf.com/learn/latex/Inserting_Images
+% https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+\usepackage{graphicx,float}
+
+% Tables
+% https://www.overleaf.com/learn/latex/Tables
+% https://en.wikibooks.org/wiki/LaTeX/Tables
+
+% Algorithms
+% https://www.overleaf.com/learn/latex/algorithms
+% https://en.wikibooks.org/wiki/LaTeX/Algorithms
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{algorithmic}
+
+% Code syntax highlighting
+% https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted
+% \usepackage{minted}
+%\usemintedstyle{borland}
+
+% References
+% https://www.overleaf.com/learn/latex/Bibliography_management_in_LaTeX
+% https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
+\usepackage{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Title content
+\title{Homework 3: PCA Analysis: Robustness to Noise and Unwanted Deviation for Harmonic Oscillations}
+\author{Hongda Li}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% Abstract
+\begin{abstract}
+   We are interested in benchmarking the efficacy and behavior of the Principal Component method by applying it to a physical setup up. Three cameras were placed in different orientation to observe a can moving in harmonic motion. There are several cases to compare with. Noise in the form of camera vibration were introduced and non-linearity of the motions where introduced by mixing the harmonic motion with some degree of pendulum oscillations and rotations for some of the cases.
+\end{abstract}
+
+
+\section{Introduction and Overview}
+    \hspace{1.1em}
+    Our objective is to analyze harmonic motion captured by cameras in different orientations using the idea of Principal Component to reduce the dimensionality of the observed data. Along with this objective, we are interested in potential impact on the PCA algorithm if noise and unwanted deviation of the motion were included. 
+    \par
+    The physical setup consists of 3 camera, placed in different position and orientation, each has a recording of a can in harmonic motion along some axis on the screen of the camera. Four cases were included, each has different level of noise and degree of deviation from the ideal harmonic motion. The first case establish ideal behavior of the can motion, creating a baseline for comparing the results obtained from the PCA method. 
+    \begin{enumerate}
+        \item[1.] Ideal Case: Three cameras placed in different position, observing a can moving in simple harmonic motion along one axis. 
+        \item[2.] Noisy Case: Three cameras placed in different position, in addition to the first case, noisy in the form of camera vibrations are introduced. 
+        \item[3.] Horizontal Displacement: In addition to the first case, the mass is released off center, causing the can to have pendulum, orthogonal to the direction of the harmonic motion. 
+        \item[4.] Horizontal Displacement with Rotation: In addition to case 3, The can starts to rotates as it undergoes harmonic and pendulum motions. 
+    \end{enumerate}
+    \par
+    The major challenges are the pre-processing the data, interpreting and comparing the Principal Components. A solid understanding of the theory and the setup of the problems are needed. 
+
+\section{Theoretical Background}
+    \subsection{Principal Value Decomposition}
+        \hspace{1.1em}
+        The idea is to use Singular Value Decomposition (SVD). The singular value decomposition of a $m\times n$ can be considered to be: 
+        \begin{equation*}\tag{1}\label{eqn:1}
+            A = U\Sigma V^T = \sum_{j = 1}^{\min(m, n)}\left(
+                u_j \sigma_j v_j^T
+            \right)
+        \end{equation*}
+        \par
+        The $U, V$ are Orthogonal Matrices and $\Sigma$ is the diagonal matrix. For our application, we only consider real matrices so discussion will be using Orthogonal instead of unitary, and transpose instead of Hermitian Adjoint. 
+        \par
+        And for our sake, we consider the economic decomposition of the singular value, meaning that $\Sigma$ is a squared matrix with dimension $k = \min(m, n)$, $U$ matrix is $m \times k$ and $V$ matrix is $n\times k$. SVD represents the matrix in term of 1 rotation in the row space, a stretching transformation and another rotation in the column space of matrix. The idea of Principal Value Analysis (PCA) uses SVD. 
+
+    \subsection{PCA Using SVD}
+        \hspace{1.1em}
+        The physical set up of the problem allows us to represent the motions of the can in 2D using points $(x_i, y_i)$ for each frame captured by each camera. There are 3 cameras in total, and therefore, we will be able to capture 6 stream of data. Packing them into a matrix where each row contain coordinate data captured by one of the camera we have: 
+        \begin{equation*}\tag{2}\label{eqn:2}
+            X = \begin{bmatrix}
+                x_{a}^T \\ y_a^T \\ x_b^T \\ y_b^T \\ x_c^T \\ y_c^T
+            \end{bmatrix}
+        \end{equation*}
+        Where each 2 rows are the x, y coordinates of the can in the frame of 3 cameras indexed by a, b, c. 
+        \par
+        The key idea here is that, if all of these observed data were describing one single harmonic motions (which is not the case but let's assume that), then there exists a unitary transformation (An alternative orthogonal basis) of the data such that $x$ only has one degree of freedom, equivalent to it being low rank\cite{kutz_2013_pg391}.
+        \par
+        Consider the covariance matrix and our goal is to show that the SVD can be used to extract an alternative basis for the motions such that, it gets rid of the non-diagonal entries of the covariance matrix when the motion is described under the new basis. And we also get the Principal Components for the motion during this process. Consider the Covariance matrix for the row data matrix: 
+        \begin{equation*}\tag{3}\label{eqn:3}
+            \text{Cov(X)} = \frac{1}{n - 1}XX^T
+        \end{equation*}
+        \par
+        If $x_a, y_a$ were describing the same motion, then the covariance between the 2 vectors, $x_a^T, y_a^T$ will far away from zero. The highest covariance of each row is on the diagonal of the matrix $C_x$ due to the fact that the diagonal is the variance for each row of the data matrix. Applying SVD on the row data matrix $X$, we have: $X = U\Sigma V^T$, the alternative basis here will be the $U$ matrix. \textbf{Note that}: the mean of each row of the data matrix has to be zero in order for covariance matrix to actually make sense. 
+        \par
+        The proof can shown by considering the argument: 
+        \begin{align*}\tag{4}\label{eqn:4}
+            \text{Cov}(U^TX)(n - 1) &= U^TX(U^TX)^T 
+            \\
+            \text{Cov}(U^TX)(n - 1) &= U^TXX^TU
+            \\
+            \text{Cov}(U^TX)(n - 1) &= U^TU\Sigma V^TV \Sigma U^TU
+            \\
+            \text{Cov}(U^TX)(n - 1) &= \Sigma^2
+        \end{align*}
+        \par
+        Observe that, by projecting onto the $U^T$ matrix, the transformed data matrix is diagonal, indicating minimal non-diagonal elements. Diagonal Covariance Matrix implies that each row of the new data matrix is observing a unique composition of the signals of the original data entries. Intuitively, it could means a motion that is not correlated to any other motions observed. The motions under alternative basis will be: $\Sigma V^T$ accordingly. 
+        \par
+        For our physical set up, the matrix $U$ is representing an optimal mixing (A different perspective) of the $x, y$ motions captured by each cameras. And the matrix $V$ will be the actual principal motions (in 1D) that the matrix $U$ is trying to mix, and the matrix $\Sigma$ will scale the signal coming out from $V^T$. And this is my intuitive understanding of the matter. 
+
+\section{Algorithm Implementation and Development}
+    The same procedures were repeated for 4 of the case. It can be summarized by the following: 
+    \begin{enumerate}
+    \item[1.] Motions extraction from frames of the video captured by each cameras. 
+    \item[2.] Visualizing and standardizing the data. 
+    \item[3.] Visualizing the principal components and distribution of the principal values. 
+    \end{enumerate}
+    \par
+    The challenging part of the algorithm is motion extraction from the data, and the subtle part is the normalization of the data matrix. Both plays important roles for the analysis of the PCA algorithms. 
+    \subsection{Motion Extraction}
+
+        \begin{algorithm}\label{alg:algorithm1}\algsetup{linenosize=\tiny}\small
+            \begin{algorithmic}[1]
+            \STATE{\textbf{Input:} Background: M, Item: T; StartingPosition: X, Y; SearchRange [RangeX, RangeY]}
+            \STATE{Displacement:=[0, 0]; MinDifference = +inf}
+            \FOR{II = -RangeX: RangeX - 1}
+            {
+                \FOR{JJ = -RangeY: RangeY - 1}
+                {
+                    \STATE{Xstart := X + II; Ystart = Y + JJ}
+                    \STATE{Xend := Xstart size(T, 1); Yend = Ystart + size(T, 2)}
+                    \IF{Any of Xstart, Ystart, Xend, Yend is Out of Background}
+                    {
+                        \STATE{continue}
+                    }
+                    \ENDIF
+                    \STATE{Difference := abs(T - Background(Xstart: Xend, Ystart: Yend))}
+                    \IF{Difference $<$ MinDifference}
+                    {
+                        \STATE{Displacement = [II; JJ]}
+                        \STATE{MinDifference := Mindiff}
+                    }
+                    \ENDIF
+                }
+                \ENDFOR
+            }
+            \ENDFOR
+            \STATE{\textbf{Ouput: }Displacement}
+            \end{algorithmic}
+        \caption{Item Locator}
+        \end{algorithm}
+        
+        \par
+        Given an gray scale image, \hyperref[alg:algorithm1]{Algorithm 1} will search over a range on a gray scale background, minimizing the one norm of the difference. The item is a matrix, denoted as ``T", and the background is another matrix. The top right corner of ``T" is anchored at the starting position, and it will then slide around with ``RangeX, RangeY'' to minimize the 1-Norm difference between the ``T'' and the background. 
+        \par
+        For the first frame, the image of the can and the coordinate is selected manually. For each frame, we then \hyperref[alg:algorithm1]{Algorithm 1} to search for the item, and then we update the image for the can. Repeat the process for all remaining frames. 
+        \textbf{Note}: The parameter ``X, Y'' describes the indices of matrix representing each frame of the video, hence ``X'' is the vertical displacement of the can on screen and ``Y'' is the horizontal displacement of the can on the screen. 
+
+        \begin{algorithm}\label{alg:algorithm2}\algsetup{linenosize=\tiny}\small
+            \begin{algorithmic}[1]
+            \STATE{\textbf{Input:} Video: V, StartingPosition: [X0, Y0], Item: T}
+                \STATE{Route := StartingPosition}
+                \FOR{Frame F \textbf{in} V}
+                {
+                    \STATE{Displacement := \textbf{Use} \hyperref[alg:algorithm1]{Algorithm 1} with T, StartingPosition: X0, Y0, and SearchRange: [30, 30]}
+                    \STATE{Route(:, end + 1) := Route(:, end) + Displacement}
+                    \STATE{\textbf{Update:} T \textbf{using} Displacement}
+                    \STATE{StartingPosition := StartingPosition + Displacement}
+                }
+                \ENDFOR
+                \STATE{\textbf{Return:} Route}
+            \end{algorithmic}\caption{Route Tracer}
+        \end{algorithm}
+        \par
+        \hyperref[alg:algorithm2]{Algorithm 2} uses the first algorithm as a subroutine to find the displacement of the can for each frame, accumulating it into ``Route''. 
+        \par
+        This is used to extract the motion of the can for all 3 cameras for all 4 cases. At the start of the each video, the position of the can and a window that contains the can is identified manually.
+        
+    \subsection{Data Standardization}
+        \hspace{1.1em}
+        The coordinates of the each of the cameras are stored as a $2\times N$ vector for each cameras, stack together vertically, they formed the Row Data Matrix. However, the data is them process in a way the minimizes the errors of the SVD algorithm, and standardized so the mean of each row is located at $0$ which is necessary for the theory to work. 
+        \begin{algorithm}\label{alg:algorithm3}\algsetup{linenosize=\tiny}\small
+            \begin{algorithmic}[1]
+                \STATE{ScreenWidthHeightVec := [480; 640; 480; 640; 480; 640]}
+                \STATE{\textbf{Input: }RowDataMatrix: M}
+                \STATE{StdMatrix := M./mean(RowDataMatrix, 2)}
+                \STATE{StdMatrix := M./ScreenWidthHeightVec} 
+                \STATE{\textbf{Output: }StdMatrix}
+            \end{algorithmic}\caption{Row Data Matrix Standardization}
+        \end{algorithm}
+        \par
+        \hyperref[alg:algorithm3]{Algorithm 3} standardizes row data matrix by subtracting the mean on each row by the mean of that row, and divides by the size of the screen. Vector representing the horizontal motion is divided by the width of the screen, and vector representing the vertical motion is divided by the height of the screen. This is necessary because the motion describes by vector is measured by screen size instead of piexels. 
+
+\section{Computational Results}
+    \begin{figure}[h]
+        \hspace{-4em}
+        \includegraphics*[width=0.6\linewidth]{pca-analysis1.png}
+        \hspace{-3em}
+        \includegraphics*[width=0.6\linewidth]{pca-analysis2.png}
+        \caption{Harmonic Motion; Left: No Noise, Right: With Noise }
+        \label{fig:fig1}
+    \end{figure}
+    \begin{figure}[h]
+        \hspace{-4em}
+        \includegraphics*[width=0.6\linewidth]{pca-analysis3.png}
+        \hspace{-3em}
+        \includegraphics*[width=0.6\linewidth]{pca-analysis4.png}
+        \caption{Left: Mixed Harmonic Pendulum Motion, Right: With Rotations }
+        \label{fig:fig2}
+    \end{figure}
+    The ideal case is shown by the left of \hyperref[fig:fig1]{Figure 1}. The modes are rows of the matrix $V$ from SVD of the row data matrix. we will be able to obtain 2 harmonic oscillation that is slightly out of phase from each other. This indeed matches empirical observation from a human.
+    \par
+    Computationally, the first 2 principal components contain over 90\% of the cumulative energy. Compare to the case when noise are introduced as camera shakes, shown on right side of \hyperref[fig:fig1]{Figure 1}, the cumulative energy of the first 2 components decreased, but the first principal modes dramatically increased. In addition, the principal components describing the motions are also filled with noise. 
+    \par
+    The introduction of noise completely ruined the ability of the algorithm to identify low rank structure of observe motions.  
+    \par
+    \hyperref[fig:fig2]{Figure 2} left shows the PCA results for pendulum motions mixed with harmonic motions, which contains 3 principal components, each of them containing over 80\% of the cumulative energy. The first components consists of motions from harmonic motions and the second 2 consists of motions from pendulum motion. 
+    \par
+    When noise are introduced for the mixed motions in the form of rotations, \hyperref[alg:algorithm1]{Algorithm 1} were not able to trace the motion for the can observed by the third camera due to rapid rotations of the cam, causing distortion on the second principal component, this is shown in the right of \hyperref[fig:fig2]{Figure 2}. 
+
+
+\section{Summary and Conclusions}
+    \hspace{1.1em}
+    Noise has a significant impact on the PCA algorithm, it peaks first singular value and reduces the precision of the principal components in when the noise is in the form of camera shakes. In the case rotation of the case, it's seemed as a deformation of the principal components. Once the type of noise is identified from the PCA components and distribution of the singular value, we then can apply better algorithms for motion extraction for noise reduction. It's not hard to notice that the changes between each frame should be used to track the motions of the can for each camera which will reduce the noise introduced by the can rotation. The noise introduce via camera shake can be reduces by actively tracking the motion of the whole frame. In addition to noise reduction techniques for the pre-processing of the signal, one can also use the ideas of Robust PCA \cite{kutz_2013_pg403}. 
+% References
+\printbibliography{references}
+
+% Appendices
+\begin{appendices}
+
+\section{MATLAB Functions}
+
+    
+\end{appendices}
+
+\end{document}
