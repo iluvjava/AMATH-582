@@ -8,7 +8,7 @@ classdef Tracer < handle
         MonoVid;        % The video in mono.  
         Item;           % The item in frame, which contain the object(the moving can) in mono vid.
         InitialPosition % The initial top top left corner of the frame. 
-        StartingPosition; 
+        StartingPosition;
                         % Staring position, will get refreshed.
         SearchRange;    % The range to search for the next hot spot. 
         Box;
