@@ -110,25 +110,44 @@ title("LDA Confusion");
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SVM FAIED 
 clc;
-RawImages = double(MnistTrain.Data); 
+RawImages = double(MnistTrain.Data);
 LabelsTrain = MnistTrain.Labels;
 DataTrain = reshape(RawImages, [28^2, size(RawImages, 3)]); 
-DataTrain = DataTrain/255;
-DataTrain = DataTrain(:, 1:1000);
-LabelsTrain = LabelsTrain(1:1000);
+DataTrain = DataTrain/255; % Standardization in discguise 
+DataTrain = DataTrain(:, :);
+LabelsTrain = LabelsTrain(:);
 
 DataTest = double(MnistTest.Data); 
 DataTest = reshape(DataTest, [28^2, size(DataTest, 3)]);
 LabelsTest = MnistTest.Labels; 
 
-ModelTemplate = SVMTemplate("")
-Model = fitcecoc(DataTrain.', LabelsTrain);
+ModelTemplate = templateSVM("KernelFunction", "poly", "PolynomialOrder", 2);
+Model = fitcecoc(DataTrain.', LabelsTrain, "Learners", ModelTemplate);
 
+%% 
 PredictedLabels = predict(Model, DataTest.');
 confusionchart(LabelsTest, PredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized');
+title("SVM Quadratic Kernel");
+
+%% SVM With Functions
+clc;
+[TrainX, TrainY, Projector, ~] = MnistTrain.principalProj(0.5); 
+TestX = Projector*MnistTest.DataStd;
+TestY = MnistTest.Labels; 
+TestX = MinMaxStd(TestX); 
+[SVMModel, Loss] = GetSVMModel(TrainX, TrainY);
+TestPredictedLabels = predict(SVMModel, TestX.'); 
+%% 
+confusionchart(TestY, TestPredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized'); 
+title("PCA With SVM"); 
+
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TREE
+% DECISION TREE ENSEMBLE
+
+
+
+
 
 
 
