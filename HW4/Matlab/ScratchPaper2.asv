@@ -24,130 +24,117 @@ figure;
 confusionchart(TestLabels, PredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized');
 title("LDA Confusion Matx Linear");
 
-%% QUADRATIC LDA WITH PCA REDUCTION FOR ALL DIGITS
-[DataTrain, LabelsTrain, Projector, ~] = MnistTrain.principalProj(0.5); 
-TestaData = Projector*MnistTest.DataStd;
-TestLabels = MnistTest.Labels;
 
-Model = fitcdiscr(DataTrain.', LabelsTrain.', "DiscrimType", "Quadratic");
-PredictedLabels = predict(Model, TestaData.');
-CVModel = crossval(Model);
-L = kfoldLoss(CVModel);
-disp(strcat("10 digits cross val loss: ", num2str(L)));
-
-figure;
+%% LINEAR DIS ON ALL DATA WITH PCA
+[~, ~, TestLabels, PredictedLabels] = GetLDAModels(MnistTrain, MnistTest);
 confusionchart(TestLabels, PredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized');
-title("LDA Confusion Matx Quadratic");
+title("LDA All Digits Test Sets with PCA"); 
 
-
-%% 4, 5 Binary Separation
-DIGIT1 = 4; 
-DIGIT2 = 5;
-
-[DataTrain, LabelsTrain, Projector, ~] = MnistTrain.principalProj(0.5, [DIGIT1, DIGIT2]); 
-TestData = Projector*MnistTest.DataStd;
-TestLabels = MnistTest.Labels;
-[TestData, TestLabels] = SplitByLabels(TestData, TestLabels, [DIGIT1, DIGIT2]);
-
-Model = fitcdiscr(DataTrain.', LabelsTrain.', "DiscrimType", "linear", "delta", 0.00091834, "gamma", 0.00533);
-PredictedLabels = predict(Model, TestData.');
-
-figure;
+%% LINEAR DIS ON DIGIT 4, 5, 7 WITH PCA
+[~, ~, TestLabels, PredictedLabels] = GetLDAModels(MnistTrain, MnistTest, [4, 9, 7]);
 confusionchart(TestLabels, PredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized');
-title("LDA Confusion Mtx Linear");
 
-
-%% 4, 9 LDA BINARY SEPARATIONS
-DIGIT1 = 9; 
-DIGIT2 = 4;
-
-[DataTrain, LabelsTrain, Projector, ~] = MnistTrain.principalProj(0.5, [DIGIT1, DIGIT2]); 
-TestData = Projector*MnistTest.DataStd;
-TestLabels = MnistTest.Labels;
-[TestData, TestLabels] = SplitByLabels(TestData, TestLabels, [DIGIT1, DIGIT2]);
-
-Model = fitcdiscr(DataTrain.', LabelsTrain.');
-PredictedLabels = predict(Model, TestData.');
-
-figure;
+%% LINEAR DIS ON DIGIT 4, 9 WITH PCA
+[~, ~, TestLabels, PredictedLabels] = GetLDAModels(MnistTrain, MnistTest, [4, 9]);
+figure; 
 confusionchart(TestLabels, PredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized');
-title("LDA Confusion");
-
-%% 0, 1 Binary Separation 
-DIGIT1 = 0; 
-DIGIT2 = 1;
-
-[DataTrain, LabelsTrain, Projector, ~] = MnistTrain.principalProj(0.5, [DIGIT1, DIGIT2]); 
-TestData = Projector*MnistTest.DataStd;
-TestLabels = MnistTest.Labels;
-[TestData, TestLabels] = SplitByLabels(TestData, TestLabels, [DIGIT1, DIGIT2]);
-
-Model = fitcdiscr(DataTrain.', LabelsTrain.');
-PredictedLabels = predict(Model, TestData.');
-
-figure;
-title("Confustion Matrix");
+%% LINEAR DIS ON DIGIT 0, 1 WITH PCA
+[~, ~, TestLabels, PredictedLabels] = GetLDAModels(MnistTrain, MnistTest, [0, 1]);
+figure; 
 confusionchart(TestLabels, PredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized');
-title("LDA Confusion");
 
-%% 4, 9, 7, Separation
-DIGIT1 = 4; 
-DIGIT2 = 9;
-DIGIT3 = 7;
-
-[DataTrain, LabelsTrain, Projector, ~] = MnistTrain.principalProj(0.5, [DIGIT1, DIGIT2, DIGIT3]); 
-TestData = Projector*MnistTest.DataStd;
-TestLabels = MnistTest.Labels;
-[TestData, TestLabels] = SplitByLabels(TestData, TestLabels, [DIGIT1, DIGIT2, DIGIT3]);
-
-Model = fitcdiscr(DataTrain.', LabelsTrain.');
-PredictedLabels = predict(Model, TestData.');
-
-figure;
+%% QDA ON ALL DIGITS WITH PCA 
+[~, ~, TestLabels, PredictedLabels] = GetLDAModels(MnistTrain, MnistTest, [], "Quadratic");
+figure; 
 confusionchart(TestLabels, PredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized');
-title("LDA Confusion");
 
-%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SVM FAIED 
-clc;
-RawImages = double(MnistTrain.Data);
-LabelsTrain = MnistTrain.Labels;
-DataTrain = reshape(RawImages, [28^2, size(RawImages, 3)]); 
-DataTrain = DataTrain/255; % Standardization in discguise 
-DataTrain = DataTrain(:, :);
-LabelsTrain = LabelsTrain(:);
-
-DataTest = double(MnistTest.Data); 
-DataTest = reshape(DataTest, [28^2, size(DataTest, 3)]);
-LabelsTest = MnistTest.Labels; 
-
-ModelTemplate = templateSVM("KernelFunction", "poly", "PolynomialOrder", 2);
-Model = fitcecoc(DataTrain.', LabelsTrain, "Learners", ModelTemplate);
-
-%% 
-PredictedLabels = predict(Model, DataTest.');
-confusionchart(LabelsTest, PredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized');
-title("SVM Quadratic Kernel");
-
-%% SVM With Functions
+%% SVM WITH PCA WITH GAUSSIAN KERNEL 
 clc;
 [TrainX, TrainY, Projector, ~] = MnistTrain.principalProj(0.5); 
-TestX = Projector*MnistTest.StdData;
+TestX = Projector*MnistTest.DataStd;
 TestY = MnistTest.Labels; 
+TestX = MinMaxStd(TestX); 
 [SVMModel, Loss] = GetSVMModel(TrainX, TrainY);
+disp(strcat("SVM Loss ", num2str(Loss))); 
+TestPredictedLabels = predict(SVMModel, TestX.'); 
 
+confusionchart(TestY, TestPredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized'); 
+title("PCA With SVM"); 
 
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DECISION TREE ENSEMBLE
+% DECISION TREE SINGLE
+% Reference: 
+% https://www.mathworks.com/help/stats/select-predictors-for-random-forests.html#d122e72743
+clc;
+[TrainX, TrainY, Projector, ~] = MnistTrain.principalProj(0.5); 
+TrainX = TrainX(:, 1: end);
+TrainY = TrainY(1: end);
+TestX = Projector*MnistTest.DataStd;
+TestY = MnistTest.Labels; 
+Tree = fitctree(TrainX.', TrainY);
+% view(Tree.Trained{1}, 'Mode', 'graph'); 
+% classError = kfoldLoss(Tree); 
+% disp(classError); 
+
+TestPredictedLabels = predict(Tree, TestX.'); 
+
+confusionchart(TestY, TestPredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized'); 
+title("PCA TREE"); 
+
+%% DECISION FOREST 
+clc;
+[TrainX, TrainY, Projector, Idx] = MnistTrain.principalProj(0.5); 
+TrainX = TrainX(:, 1:end);
+TrainY = TrainY(1:end);
+TestX = Projector*MnistTest.DataStd;
+TestY = MnistTest.Labels; 
+Tree = fitctree(TrainX.', TrainY);
+
+t = templateTree("MinLeafSize", 3);
+Dtree = fitrensemble(TrainX.', TrainY, 'Method', 'LSBOost', 'NumLearningCycles', 260, ...
+    'Learners', t, "LearnRate", 0.075036);
+
+PredictedTestLabels = predict(Dtree, TestX.');
+figure;
+confusionchart(TestY, PredictedTestLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized'); 
+title("Random Forest with PCA"); 
+
+%% SVM, DTREE, LDA, HARDEST PAIR: 4, 9
+
+% SVM ----------------------------------------------------------------------------------------------------------------------------
+clc;
+[TrainX, TrainY, Projector, ~] = MnistTrain.principalProj(0.5, [4, 9]); 
+TestX = Projector*MnistTest.DataStd;
+TestY = MnistTest.Labels; 
+TestX = MinMaxStd(TestX); 
+[TestX, TestY] = SplitByLabels(TestX, TestY, [4, 9]); 
+
+[SVMModel, Loss] = GetSVMModel(TrainX, TrainY);
+disp(strcat("SVM Loss ", num2str(Loss))); 
+TestPredictedLabels = predict(SVMModel, TestX.'); 
+
+figure; 
+confusionchart(TestY, TestPredictedLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized'); 
+title("PCA With SVM on [4, 9]"); 
+
+%% D Tree
+% 
+t = templateTree();
+% Dtree = fitrensemble(TrainX.', TrainY, 'Method', 'LSBOost', 'NumLearningCycles', 260, ...
+%      'Learners', t);
+
+Dtree = fitctree(TrainX.', TrainY, "crossval", "on"); 
+
+%% 
+f
+PredictedTestLabels = predict(Dtree.Trained{4}, TestX.');
+
+confusionchart(TestY, PredictedTestLabels, 'RowSummary','row-normalized','ColumnSummary','column-normalized'); 
+title("D Tree with PCA"); 
 
 
 
-
-
-
-
-
-
+%% SVM, DTREE, LDA, 0, 1
 
 

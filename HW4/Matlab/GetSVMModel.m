@@ -8,6 +8,11 @@ function [SVMModel, Loss] = GetSVMModel(data, labels)
     % Labels: 
     %   This is a vector representing all the labels for multi-class
     %   classifications. 
+    % To return: 
+    %   Loss: 
+    %       The percentage of wrong prediction by the model on 10% of the
+    %       training set.
+    
     data = MinMaxStd(data); 
     DataLength = size(data, 2);
     Sep = floor(DataLength*0.9); 

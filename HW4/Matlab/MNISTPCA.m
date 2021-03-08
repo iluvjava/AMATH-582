@@ -1,4 +1,4 @@
-classdef MNISTPCA
+classdef MNISTPCA < handle
     % This class handle everything related PCA and PCA dimensionality
     % reduction. 
     %   1. Store that original MNIST data matrix. Separated into test and

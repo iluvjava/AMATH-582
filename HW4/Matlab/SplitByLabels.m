@@ -1,5 +1,5 @@
 function [Data, Labels, FilteringIdx] = SplitByLabels(data, labels, splitby)
-    % data is assume to be that each column is the data. 
+    % data is assume to be that each column is the sample, and each row corresponds to a certain feature. 
     labels = labels.';
     BoolArray = zeros(size(labels)); 
     for L = splitby

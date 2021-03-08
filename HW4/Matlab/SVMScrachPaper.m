@@ -5,5 +5,4 @@ SVMModel = fitcsvm(X,Y,'Standardize',true,'KernelFunction','RBF',...
     'KernelScale','auto');
 
 CVSVMModel = crossval(SVMModel);
-
-classLoss = kfoldLoss(CVSVMModel)
+classLoss = kfoldLoss(CVSVMModel); 
