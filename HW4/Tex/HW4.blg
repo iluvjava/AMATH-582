@@ -2,8 +2,16 @@
 [0] Config.pm:307> INFO - Logfile is 'HW4.blg'
 [30] biber-MSWIN64:315> INFO - === 
 [49] Biber.pm:375> INFO - Reading 'HW4.bcf'
-[155] Biber.pm:905> INFO - Found 0 citekeys in bib section 0
-[164] Utils.pm:300> WARN - The file 'HW4.bcf' does not contain any citations!
-[173] bbl.pm:648> INFO - Writing 'HW4.bbl' with encoding 'UTF-8'
-[173] bbl.pm:751> INFO - Output to HW4.bbl
-[175] Biber.pm:110> INFO - WARNINGS: 1
+[154] Biber.pm:905> INFO - Found 7 citekeys in bib section 0
+[172] Biber.pm:4196> INFO - Processing section 0
+[174] Utils.pm:75> INFO - Globbing data source 'references.bib'
+[185] Utils.pm:91> INFO - Globbed data source 'references.bib' to references.bib
+[197] Biber.pm:4373> INFO - Looking for bibtex format file 'references.bib' for section 0
+[201] bibtex.pm:1462> INFO - LaTeX decoding ...
+[212] bibtex.pm:1281> INFO - Found BibTeX data source 'references.bib'
+[277] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[277] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[278] Biber.pm:4024> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[278] Biber.pm:4030> INFO - No sort tailoring available for locale 'en-US'
+[291] bbl.pm:648> INFO - Writing 'HW4.bbl' with encoding 'UTF-8'
+[296] bbl.pm:751> INFO - Output to HW4.bbl

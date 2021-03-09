@@ -16,5 +16,269 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{lda}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=061cb0329cb9717591187925e54c9436}{%
+           family={Checn},
+           familyi={C\bibinitperiod},
+           given={Dr.\bibnamedelimi Guanliang},
+           giveni={D\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {San Jose State Univeristy}%
+      }
+      \strng{namehash}{061cb0329cb9717591187925e54c9436}
+      \strng{fullhash}{061cb0329cb9717591187925e54c9436}
+      \strng{bibnamehash}{061cb0329cb9717591187925e54c9436}
+      \strng{authorbibnamehash}{061cb0329cb9717591187925e54c9436}
+      \strng{authornamehash}{061cb0329cb9717591187925e54c9436}
+      \strng{authorfullhash}{061cb0329cb9717591187925e54c9436}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Math 253: Linear Discriminant Analysis (LDA)}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://www.sjsu.edu/faculty/guangliang.chen/Math253S20/lec11lda.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.sjsu.edu/faculty/guangliang.chen/Math253S20/lec11lda.pdf
+      \endverb
+    \endentry
+    \entry{kutz_2013_387}{book}{}
+      \name{author}{1}{}{%
+        {{hash=736373fb71febe3fc2f2954cd06b0276}{%
+           family={Kutz},
+           familyi={K\bibinitperiod},
+           given={Jose\bibnamedelima Nathan},
+           giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{736373fb71febe3fc2f2954cd06b0276}
+      \strng{fullhash}{736373fb71febe3fc2f2954cd06b0276}
+      \strng{bibnamehash}{736373fb71febe3fc2f2954cd06b0276}
+      \strng{authorbibnamehash}{736373fb71febe3fc2f2954cd06b0276}
+      \strng{authornamehash}{736373fb71febe3fc2f2954cd06b0276}
+      \strng{authorfullhash}{736373fb71febe3fc2f2954cd06b0276}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Data-driven modeling \& scientific computation: methods for complex systems \& big data}
+      \field{year}{2013}
+      \field{pages}{387}
+      \range{pages}{1}
+    \endentry
+    \entry{MathWorks-fitctree}{misc}{}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2010-09-30}
+      \field{title}{MathWorks: Help Cneter > Documentation > fitctree}
+      \verb{urlraw}
+      \verb http://web.archive.org/web/20080207010024/http://www.808multimedia.com/winnt/kernel.htm
+      \endverb
+      \verb{url}
+      \verb http://web.archive.org/web/20080207010024/http://www.808multimedia.com/winnt/kernel.htm
+      \endverb
+    \endentry
+    \entry{scikit-learn}{article}{}
+      \name{author}{16}{}{%
+        {{hash=6e96fec0d63277626bb324bd28cdecb7}{%
+           family={Pedregosa},
+           familyi={P\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+        {{hash=b99c2df2144dc5ee09317a7833dea42d}{%
+           family={Varoquaux},
+           familyi={V\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=955f19cea89ae97bb7936078898e6255}{%
+           family={Gramfort},
+           familyi={G\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2787869c9954c1d4e9891098995feb75}{%
+           family={Michel},
+           familyi={M\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=86d47ab9ca1a9dae108b4d4a0418c679}{%
+           family={Thirion},
+           familyi={T\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d42f9e9cec95da1dad2232eac74982ab}{%
+           family={Grisel},
+           familyi={G\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod}}}%
+        {{hash=8bd8ef25258dd2311f92df23fe71ecf7}{%
+           family={Blondel},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a5ee41fa92b9e425806e1773853f1932}{%
+           family={Prettenhofer},
+           familyi={P\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=0c808557734e8929976d1f06f99c4ff2}{%
+           family={Weiss},
+           familyi={W\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=9662a6ea01596c6dd450817ccac81c4a}{%
+           family={Dubourg},
+           familyi={D\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=39e81a3e2193b954680a0ab847a0bb55}{%
+           family={Vanderplas},
+           familyi={V\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=14c4a498c032f77d0b83f86c710dd50e}{%
+           family={Passos},
+           familyi={P\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=dc075b18fb4710a1a37b258804c57efe}{%
+           family={Cournapeau},
+           familyi={C\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=67ec0e8add781665a43010c9559111e9}{%
+           family={Brucher},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=dcb3918f09eb8785e6b212a907cc37cf}{%
+           family={Perrot},
+           familyi={P\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ab20fcf381cd45daa82417c6fc595051}{%
+           family={Duchesnay},
+           familyi={D\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{3a097aa3ebf2b8c2acf988341dde9710}
+      \strng{fullhash}{7a67607c66e4af944b5f16461d6d0a87}
+      \strng{bibnamehash}{3a097aa3ebf2b8c2acf988341dde9710}
+      \strng{authorbibnamehash}{3a097aa3ebf2b8c2acf988341dde9710}
+      \strng{authornamehash}{3a097aa3ebf2b8c2acf988341dde9710}
+      \strng{authorfullhash}{7a67607c66e4af944b5f16461d6d0a87}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{title}{Scikit-learn: Machine Learning in {P}ython}
+      \field{volume}{12}
+      \field{year}{2011}
+      \field{pages}{2825\bibrangedash 2830}
+      \range{pages}{6}
+      \verb{urlraw}
+      \verb https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
+      \endverb
+      \verb{url}
+      \verb https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
+      \endverb
+    \endentry
+    \entry{steven}{book}{}
+      \name{author}{1}{}{%
+        {{hash=9068c5569283b931b595bcc888bf8f38}{%
+           family={Steven\bibnamedelimb L.\bibnamedelimi Brunton},
+           familyi={S\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={J.Nathan\bibnamedelima Kutz},
+           giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{9068c5569283b931b595bcc888bf8f38}
+      \strng{fullhash}{9068c5569283b931b595bcc888bf8f38}
+      \strng{bibnamehash}{9068c5569283b931b595bcc888bf8f38}
+      \strng{authorbibnamehash}{9068c5569283b931b595bcc888bf8f38}
+      \strng{authornamehash}{9068c5569283b931b595bcc888bf8f38}
+      \strng{authorfullhash}{9068c5569283b931b595bcc888bf8f38}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Data-Driven Science and Enineering}
+      \field{year}{2019}
+      \field{pages}{187}
+      \range{pages}{1}
+    \endentry
+    \entry{stats_book_419}{book}{}
+      \name{author}{1}{}{%
+        {{hash=a4123c1da3d0f429647f5ff18a65f79c}{%
+           family={Trevor\bibnamedelima Hastie},
+           familyi={T\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={Joreme\bibnamedelima Friedman},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+           suffix={Robert\bibnamedelima Tibshirani},
+           suffixi={R\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{fullhash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{bibnamehash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{authorbibnamehash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{authornamehash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{authorfullhash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \field{extraname}{1}
+      \field{sortinit}{T}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Elements of Statistical Learning: Data Ming, Inference, and Prediction 2nd Edition}
+      \field{year}{2017}
+      \field{pages}{419}
+      \range{pages}{1}
+    \endentry
+    \entry{stats_book_424}{book}{}
+      \name{author}{1}{}{%
+        {{hash=a4123c1da3d0f429647f5ff18a65f79c}{%
+           family={Trevor\bibnamedelima Hastie},
+           familyi={T\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={Joreme\bibnamedelima Friedman},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+           suffix={Robert\bibnamedelima Tibshirani},
+           suffixi={R\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{fullhash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{bibnamehash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{authorbibnamehash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{authornamehash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \strng{authorfullhash}{a4123c1da3d0f429647f5ff18a65f79c}
+      \field{extraname}{2}
+      \field{sortinit}{T}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Elements of Statistical Learning: Data Ming, Inference, and Prediction 2nd Edition}
+      \field{year}{2017}
+      \field{pages}{424}
+      \range{pages}{1}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 

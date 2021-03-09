@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.13)  8 MAR 2021 20:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.9.13)  8 MAR 2021 21:56
 entering extended mode
 **c:/Users/victo/source/repos/AMATH-582/HW4/Tex/HW4.tex
 (c:/Users/victo/source/repos/AMATH-582/HW4/Tex/HW4.tex
@@ -676,22 +676,22 @@ Overfull \hbox (15.0pt too wide) detected at line 215
 [][] 
  []
 
-[3]
+
 Overfull \hbox (15.0pt too wide) detected at line 232
 [][] 
  []
 
-
+[3]
 Overfull \hbox (15.0pt too wide) detected at line 245
 [][] 
  []
 
-<singular-value-spectrum.png, id=120, 421.575pt x 316.0608pt>
+<singular-value-spectrum.png, id=126, 421.575pt x 316.0608pt>
 File: singular-value-spectrum.png Graphic file (type png)
 <use singular-value-spectrum.png>
 Package pdftex.def Info: singular-value-spectrum.png  used on input line 254.
 (pdftex.def)             Requested size: 281.85587pt x 211.31595pt.
-<3-mode-projection.png, id=122, 421.575pt x 316.0608pt>
+<3-mode-projection.png, id=128, 421.575pt x 316.0608pt>
 File: 3-mode-projection.png Graphic file (type png)
 <use 3-mode-projection.png>
 Package pdftex.def Info: 3-mode-projection.png  used on input line 256.
@@ -701,103 +701,84 @@ Overfull \hbox (40.62326pt too wide) in paragraph at lines 253--257
 []  []   [] 
  []
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [4] [5 <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/singular-value-spectrum.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/3-mode-projection.png (PNG copy)>]
-
-LaTeX Warning: Empty bibliography on input line 282.
-
-<conmat-lda-2-hardests-digits-pca.png, id=182, 1505.625pt x 451.9284pt>
+<conmat-lda-2-hardests-digits-pca.png, id=199, 1505.625pt x 451.9284pt>
 File: conmat-lda-2-hardests-digits-pca.png Graphic file (type png)
 <use conmat-lda-2-hardests-digits-pca.png>
-Package pdftex.def Info: conmat-lda-2-hardests-digits-pca.png  used on input line 289.
+Package pdftex.def Info: conmat-lda-2-hardests-digits-pca.png  used on input line 287.
 (pdftex.def)             Requested size: 469.75502pt x 140.99971pt.
-
-Overfull \hbox (2.22221pt too wide) in paragraph at lines 288--290
-[]  [] 
- []
-
-<conmat-lda-2-easiest-digits-pca.png, id=184, 1505.625pt x 451.9284pt>
+<conmat-lda-2-easiest-digits-pca.png, id=201, 1505.625pt x 451.9284pt>
 File: conmat-lda-2-easiest-digits-pca.png Graphic file (type png)
 <use conmat-lda-2-easiest-digits-pca.png>
-Package pdftex.def Info: conmat-lda-2-easiest-digits-pca.png  used on input line 292.
+Package pdftex.def Info: conmat-lda-2-easiest-digits-pca.png  used on input line 289.
 (pdftex.def)             Requested size: 469.75502pt x 140.99971pt.
-
-Overfull \hbox (2.22221pt too wide) in paragraph at lines 291--293
-[]  [] 
- []
-
-<conmat-lda-digits-with-pca.png, id=186, 1505.625pt x 451.9284pt>
+<conmat-lda-digits-with-pca.png, id=203, 1505.625pt x 451.9284pt>
 File: conmat-lda-digits-with-pca.png Graphic file (type png)
 <use conmat-lda-digits-with-pca.png>
-Package pdftex.def Info: conmat-lda-digits-with-pca.png  used on input line 295.
+Package pdftex.def Info: conmat-lda-digits-with-pca.png  used on input line 291.
 (pdftex.def)             Requested size: 469.75502pt x 140.99971pt.
-
-Overfull \hbox (2.22221pt too wide) in paragraph at lines 294--296
-[]  [] 
- []
-
-<conmat-lda-alldigits-with-pca.png, id=188, 1505.625pt x 451.9284pt>
+<conmat-lda-alldigits-with-pca.png, id=205, 1505.625pt x 451.9284pt>
 File: conmat-lda-alldigits-with-pca.png Graphic file (type png)
 <use conmat-lda-alldigits-with-pca.png>
-Package pdftex.def Info: conmat-lda-alldigits-with-pca.png  used on input line 298.
+Package pdftex.def Info: conmat-lda-alldigits-with-pca.png  used on input line 293.
 (pdftex.def)             Requested size: 469.75502pt x 140.99971pt.
 
-Overfull \hbox (2.22221pt too wide) in paragraph at lines 297--299
-[]  [] 
- []
 
-
-LaTeX Warning: Float too large for page by 12.3466pt on input line 301.
+LaTeX Warning: Float too large for page by 12.3466pt on input line 296.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<conmat-svm-easiest-2-digits-pca.png, id=190, 1505.625pt x 451.9284pt>
+<conmat-svm-easiest-2-digits-pca.png, id=207, 1505.625pt x 451.9284pt>
 File: conmat-svm-easiest-2-digits-pca.png Graphic file (type png)
 <use conmat-svm-easiest-2-digits-pca.png>
-Package pdftex.def Info: conmat-svm-easiest-2-digits-pca.png  used on input line 303.
+Package pdftex.def Info: conmat-svm-easiest-2-digits-pca.png  used on input line 298.
 (pdftex.def)             Requested size: 469.75502pt x 140.99971pt.
-<conmat-svm-hardest-2-digits-pca.png, id=192, 1505.625pt x 451.9284pt>
+<conmat-svm-hardest-2-digits-pca.png, id=209, 1505.625pt x 451.9284pt>
 File: conmat-svm-hardest-2-digits-pca.png Graphic file (type png)
 <use conmat-svm-hardest-2-digits-pca.png>
-Package pdftex.def Info: conmat-svm-hardest-2-digits-pca.png  used on input line 305.
+Package pdftex.def Info: conmat-svm-hardest-2-digits-pca.png  used on input line 300.
 (pdftex.def)             Requested size: 469.75502pt x 140.99971pt.
-<conmat-svm-alldigits-pca.png, id=194, 1505.625pt x 451.9284pt>
+<conmat-svm-alldigits-pca.png, id=211, 1505.625pt x 451.9284pt>
 File: conmat-svm-alldigits-pca.png Graphic file (type png)
 <use conmat-svm-alldigits-pca.png>
-Package pdftex.def Info: conmat-svm-alldigits-pca.png  used on input line 307.
+Package pdftex.def Info: conmat-svm-alldigits-pca.png  used on input line 302.
 (pdftex.def)             Requested size: 469.75502pt x 140.99971pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<conmat-dtree-easiest-2-digits.png, id=195, 1505.625pt x 451.9284pt>
+<conmat-dtree-easiest-2-digits.png, id=212, 1505.625pt x 451.9284pt>
 File: conmat-dtree-easiest-2-digits.png Graphic file (type png)
 <use conmat-dtree-easiest-2-digits.png>
-Package pdftex.def Info: conmat-dtree-easiest-2-digits.png  used on input line 312.
+Package pdftex.def Info: conmat-dtree-easiest-2-digits.png  used on input line 307.
 (pdftex.def)             Requested size: 516.73338pt x 155.10864pt.
 
-Overfull \hbox (46.97836pt too wide) in paragraph at lines 312--313
+Overfull \hbox (46.97836pt too wide) in paragraph at lines 307--308
 [][] 
  []
 
-<conmat-dtree-hardest-2-digits.png, id=197, 1505.625pt x 451.9284pt>
+<conmat-dtree-hardest-2-digits.png, id=214, 1505.625pt x 451.9284pt>
 File: conmat-dtree-hardest-2-digits.png Graphic file (type png)
 <use conmat-dtree-hardest-2-digits.png>
-Package pdftex.def Info: conmat-dtree-hardest-2-digits.png  used on input line 314.
+Package pdftex.def Info: conmat-dtree-hardest-2-digits.png  used on input line 309.
 (pdftex.def)             Requested size: 516.73338pt x 155.10864pt.
 
-Overfull \hbox (46.97836pt too wide) in paragraph at lines 314--315
+Overfull \hbox (46.97836pt too wide) in paragraph at lines 309--310
 [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 323.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 317.
 [6] [7 <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/conmat-lda-2-hardests-digits-pca.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/conmat-lda-2-easiest-digits-pca.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/conmat-lda-digits-with-pca.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/conmat-lda-alldigits-with-pca.png (PNG copy)>] [8 <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/conmat-svm-easiest-2-digits-pca.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/conmat-svm-hardest-2-digits-pca.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/conmat-svm-alldigits-pca.png (PNG copy)>] [9 <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/conmat-dtree-easiest-2-digits.png (PNG copy)> <c:/Users/victo/source/repos/AMATH-582/HW4/Tex/conmat-dtree-hardest-2-digits.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 323.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 317.
  (c:/Users\victo\source\repos\AMATH-582\HW4\Tex\HW4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 323.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 323.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 317.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 317.
 Package rerunfilecheck Info: File `HW4.out' has not changed.
 (rerunfilecheck)             Checksum: E862F8D19D9C0666DFE5B752FCFB1069;1173.
 Package logreq Info: Writing requests to 'HW4.run.xml'.
@@ -805,17 +786,17 @@ Package logreq Info: Writing requests to 'HW4.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 15396 strings out of 492484
- 262671 string characters out of 3121601
- 750405 words of memory out of 3000000
- 19446 multiletter control sequences out of 15000+200000
- 12766 words of font info for 49 fonts, out of 3000000 for 9000
+ 15620 strings out of 492484
+ 267408 string characters out of 3121601
+ 753712 words of memory out of 3000000
+ 19660 multiletter control sequences out of 15000+200000
+ 13235 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,13n,34p,1344b,743s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on c:/Users\victo\source\repos\AMATH-582\HW4\Tex\HW4.pdf (9 pages, 1237830 bytes).
+ 47i,13n,45p,1344b,1231s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on c:/Users\victo\source\repos\AMATH-582\HW4\Tex\HW4.pdf (9 pages, 1271544 bytes).
 PDF statistics:
- 301 PDF objects out of 1000 (max. 8388607)
- 77 named destinations out of 1000 (max. 500000)
+ 332 PDF objects out of 1000 (max. 8388607)
+ 85 named destinations out of 1000 (max. 500000)
  244 words of extra memory for PDF output out of 10000 (max. 10000000)
 

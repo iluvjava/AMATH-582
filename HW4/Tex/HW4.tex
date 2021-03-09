@@ -82,7 +82,7 @@
         \hspace{1.1em}
         Linear discriminant analysis comes in many different types of variance, and it can be regularized as well. The most simple is: LDA, which seeks to look for a linear subspace such that the projection of the labeled data onto the line has maximal distance from the global central, and minimal variance within the clusters. The model assume homogenous Gaussian distribution of the data points. If Non-homogenous Gaussian clusters are involved, quadratic discriminant analysis is needed for the classifier. However if QDA classifier is used, then the covariance matrix for the features for each cluster will have to be diagonal, implying the fact that projecting onto the PCA modes before the analysis will be helpful for QDA.  
         \par
-        WLOG, let's assume a binary classification problems with 2 classes: $C_1, C_2$. The features of each sample is a vector denoted by $x_i$ and the subspace we project them onto is a vector denoted as $v$, then, the centroid for one of the cluster projected onto the line can be expressed as:
+        WLOG, let's assume a binary classification problems with 2 classes: $C_1, C_2$. The features of each sample is a vector denoted by $x_i$ and the subspace we project them onto is a vector denoted as $v$, then, the centroid for one of the cluster projected onto the line can be expressed as\cite{lda}:
         \begin{equation*}\tag{1}\label{eqn:1}
             \mu_1 = \frac{1}{|C_1|} \sum_{x_i \in C_1}^{}\left(
                 v^Tx_i
@@ -148,7 +148,7 @@
 
     \subsection{Principal Component Analysis}
         \hspace{1.1em}
-        Principal Component Analysis is used as a dimensionality reduction technique. Consider the Column Data Matrix $X$ and its SVD decomposition of the matrix: 
+        Principal Component Analysis is used as a dimensionality reduction technique\cite{kutz_2013_387}. Consider the Column Data Matrix $X$ and its SVD decomposition of the matrix: 
         \begin{equation*}\tag{6}\label{eqn:6}
             X = U\Sigma V^T \implies U^TX = \Sigma V^T
         \end{equation*}
@@ -162,10 +162,10 @@
         
     \subsection{Support Vector Machine}
         \hspace{1.1em}
-        The idea of SVM is to find the hyper plane between the clusters such that it maximizes the margin between the boundary of the 2 clusters. This is intrinsically a binary classification method. 
+        The idea of SVM is to find the hyper plane between the clusters such that it maximizes the margin between the boundary of the 2 clusters. This is intrinsically a binary classification method\cite{scikit-learn}. 
         % Multi-class reference: https://scikit-learn.org/stable/modules/multiclass.html
         \par
-        Computationally the problem is phrased as a Quadratic Programming problem. The SVM is computationally phrased as: 
+        Computationally the problem is phrased as a Quadratic Programming problem. The SVM is computationally phrased as\cite{stats_book_419}: 
         \begin{equation*}\tag{7}\label{eqn:7}
             \min_{\beta, \beta_0} \left\Vert
                  \beta
@@ -177,17 +177,17 @@
             \end{cases}
         \end{equation*}
         Where $y_i\in \{1, -1\}$ are the binary label of the sample, and $\xi_i$ is the penalty for cross the boundary for each of the support vector, and $\beta$ is the vector the defines the hyperplane. 
-        % Reference from elements of statistcal learning: page 419, eqn 12.7
+        % Reference from elements of statistical learning: page 419, eqn 12.7
         \par
-        In practice, to get the best separations for different topology of the cluster, kernel function is often used as a way of mapping the same data from a lower dimension to a high dimension. 
+        In practice, to get the best separations for different topology of the cluster, kernel function is often used as a way of mapping the same data from a lower dimension to a high dimension, while the theoretical analysis of the dual problem allows improve the speed and make use of only the pair-wise inner product under the new basis\cite{stats_book_424}. 
 
     \subsection{Binary Decision Tree}
         \hspace{1.1em}
         The idea of binary tree is a simple yet powerful concepts. A tree is created to partition the feature space on each node of the tree. Each branching of the tree assert one conditions on one of the attribute, (e.g: age older than 18), and each leaf node consists of samples with almost the same labels. 
         \par
-        There are many variance of the decision tree, but for our purposes, we will be focusing on the default that comes with the ``fictree'' command in matlab. 
+        There are many variance of the decision tree, but for our purposes, we will be focusing on the default that comes with the ``fictree'' command in matlab\cite{MathWorks-fitctree}. 
         \par
-        Decision tree unlike method described above, doesn't have smooth decision boundary, making it sensitive to noise and extrapolation of the data. 
+        Decision tree unlike method described above, doesn't have smooth decision boundary, making it sensitive to noise and extrapolation of the data. However, it's it has a variety of hyper parameters available for tunning and it's a interpretable\cite{steven}.
 
 \section{Algorithm Implementation and Development}
     \hspace{1.1em}
@@ -283,18 +283,13 @@
 
 % Appendices
 \begin{appendices}
-
     \begin{figure}[h]
-        \hspace{0em}
         \includegraphics*[width=1\linewidth]{conmat-lda-2-hardests-digits-pca.png}
         \caption{Figure 2: Hardest 2 Digits}\label{fig:figure2}
-        \hspace{0em}
         \includegraphics*[width=1\linewidth]{conmat-lda-2-easiest-digits-pca.png}
         \caption{Figure 3: Easiest 2 Digits} \label{fig:figure3}
-        \hspace{0em}
         \includegraphics*[width=1\linewidth]{conmat-lda-digits-with-pca.png}
         \caption{Figure 4: 3 Digits LDA}\label{fig:figure4}
-        \hspace{0em}
         \includegraphics*[width=1\linewidth]{conmat-lda-alldigits-with-pca.png}
         \caption{Figure 5: All Digits LDA}\label{fig:figure5}
         \label{fig:fig2}
@@ -303,7 +298,7 @@
         \includegraphics*[width=1\linewidth]{conmat-svm-easiest-2-digits-pca.png}
         \caption{Figure 6: SVM on Easier 2 Digits}\label{fig:figure6}
         \includegraphics*[width=1\linewidth]{conmat-svm-hardest-2-digits-pca.png}
-        \caption{Figure 7: SVM on hardest 2 Digits} \label{fig:figure7}
+        \caption{Figure 7: SVM on hardest 2 Digits}\label{fig:figure7}
         \includegraphics[width=1\linewidth]{conmat-svm-alldigits-pca.png}
         \caption{Figure 8: SVM on all 10 Digits}\label{fig:figure8}
         \label{fig:fig3}
@@ -313,7 +308,6 @@
         \caption{Figure 9: DTree on Easier 2 Digits}\label{fig:figure9}
         \includegraphics*[width=1.1\linewidth]{conmat-dtree-hardest-2-digits.png}
         \caption{Figure 10: DTree on Hardest 2 Digits}\label{fig:figure10}
-        \label{}
     \end{figure}
 
 \section{MATLAB Functions}

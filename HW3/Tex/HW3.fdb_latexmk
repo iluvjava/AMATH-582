@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber HW3"] 1614044191 "HW3.bcf" "HW3.bbl" "HW3" 1614044546
+["biber HW3"] 1614044191 "HW3.bcf" "HW3.bbl" "HW3" 1615267485
   "HW3.bcf" 1614044512 99510 e0eb7a2ab89c5f86cd0ad0aaa9e5218b "pdflatex"
   "references.bib" 1614043887 1302 4798cf68caa525935ec55d26af50576f ""
   (generated)
   "HW3.blg"
   "HW3.bbl"
-["pdflatex"] 1614044510 "c:/Users/victo/source/repos/AMATH-582/HW3/Tex/HW3.tex" "c:/Users/victo/source/repos/AMATH-582/HW3/Tex/HW3.pdf" "HW3" 1614044546
+["pdflatex"] 1614044510 "c:/Users/victo/source/repos/AMATH-582/HW3/Tex/HW3.tex" "c:/Users/victo/source/repos/AMATH-582/HW3/Tex/HW3.pdf" "HW3" 1615267485
   "C:/Users/victo/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1600022045 3773315 a9f1a8316b2b44cc5b9c38efa414393e ""
   "C:/Users/victo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map" 1610680624 79702 d20d453c87df744213d3a678b0e13af2 ""
   "C:/Users/victo/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -142,11 +142,11 @@
   "pca-analysis3.png" 1614036656 90952 38fbbc8b5734198b15dfdd861ca22e4d ""
   "pca-analysis4.png" 1614036656 91390 dbd38ba00a39d3acc9ad5228a0a9cda6 ""
   (generated)
-  "HW3.out"
-  "HW3.aux"
-  "HW3.run.xml"
-  "c:/Users/victo/source/repos/AMATH-582/HW3/Tex/HW3.pdf"
-  "HW3.bcf"
-  "HW3.pdf"
   "c:/Users/victo/source/repos/AMATH-582/HW3/Tex/HW3.log"
+  "HW3.out"
   "HW3.log"
+  "HW3.pdf"
+  "HW3.aux"
+  "HW3.bcf"
+  "c:/Users/victo/source/repos/AMATH-582/HW3/Tex/HW3.pdf"
+  "HW3.run.xml"
