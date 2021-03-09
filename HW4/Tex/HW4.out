@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{Introduction and Overview}{}% 1
+\BOOKMARK [1][-]{section.2}{Theoretical Background}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Linear Discriminant Analysis}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Principal Component Analysis}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Support Vector Machine}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Binary Decision Tree}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Algorithm Implementation and Development}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Data Standardization}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{PCA Dimensionality Reduction}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Training Generic Models}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Computational Results}{}% 11
+\BOOKMARK [2][-]{subsection.4.1}{Visualizing Low-rank Structure Using PCA}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.2}{Performance Comparison on 2,3 Digits Separation}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.3}{Performance Comparison on 10 Digits Classifications}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Summary and Conclusions}{}% 15
+\BOOKMARK [1][-]{appendix.a.A}{Appendix MATLAB Functions}{}% 16

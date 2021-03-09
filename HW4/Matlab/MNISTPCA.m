@@ -102,6 +102,9 @@ classdef MNISTPCA < handle
             end
             legend(["0", "1", "2", "3", "4", "5", "6", "7", "8","9"]);
             title("Principal Compoenent Projection Onto: 1, 5, 8"); 
+            xlabel("Principal Mode: 1"); 
+            ylabel("Principal Mode: 5");
+            zlabel("Principal Mode: 8"); 
             
             null = 0;
         end
@@ -129,9 +132,6 @@ classdef MNISTPCA < handle
             Projector = Projector(1: LastModeIdx, :);
             
         end
-        
-        
-        
         
     end
 end
