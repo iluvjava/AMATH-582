@@ -1,0 +1,217 @@
+\documentclass{article}
+
+% If you're new to LaTeX, here's some short tutorials:
+% https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes
+% https://en.wikibooks.org/wiki/LaTeX/Basics
+
+% Formatting
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[titletoc,title]{appendix}
+
+% Math
+% https://www.overleaf.com/learn/latex/Mathematical_expressions
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
+\usepackage{amsmath,amsfonts,amssymb,mathtools}
+
+% Images
+% https://www.overleaf.com/learn/latex/Inserting_Images
+% https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+\usepackage{graphicx,float}
+
+% Tables
+% https://www.overleaf.com/learn/latex/Tables
+% https://en.wikibooks.org/wiki/LaTeX/Tables
+
+% Algorithms
+% https://www.overleaf.com/learn/latex/algorithms
+% https://en.wikibooks.org/wiki/LaTeX/Algorithms
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{algorithmic}
+
+% Code syntax highlighting
+% https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted
+% \usepackage{minted}
+%\usemintedstyle{borland}
+
+% References
+% https://www.overleaf.com/learn/latex/Bibliography_management_in_LaTeX
+% https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
+\usepackage{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Title content
+\title{Dynamic Mode Decomposition and Video Background Detection}
+\author{Hongda Li}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% Abstract
+\begin{abstract}
+   The objective of the paper is to demonstrate the application of Dynamic Mode Decomposition for Video Background extraction. Using the idea of modeling video as a dynamical system with low rank orthogonal modes. 
+\end{abstract}
+
+\section{Introduction and Overview}
+    \hspace{1.1em}
+    Two videos are given for demonstrating the usage of Dynamic Mode Decomposition (DMD). Both contains a static background and some objects moving in the foreground. 
+    \par
+    Each frame of the video is view as a snapshot of as snapshot of a high dimensional dynamical system. The assumption we make is that the evolution of system are govern by low rank mode that can be easily extracted via the use of PCA. Before feeding into the D
+
+\section{Theoretical Background}
+    \subsection*{Dynamic Mode Decomposition}
+        \hspace{1.1em}
+        The premise of DMD is treating data collected from the state of the dynamical system, let it be $x_i$ be a vector of all the state variables of the system at a given time moment $i$. In addition we assume that these snapshot are taken on an evenly spaced interval. Most of the theoretical description of the method can be found in book \textit{Dynamic Mode Decomposition} by Kutz et.al\cite{dmd_book}.
+        \par
+        The data are represented as a matrix, where each column contain the snapshots for each of state variable at each time moment: 
+        \begin{equation*}\tag{1}\label{eqn:1}
+            \mathbf{X_{\text{original}}} =
+            \begin{bmatrix}
+                \\[1em]
+                x_1 & x_2 & \cdots x_{m + 1}
+                \\[2em]
+            \end{bmatrix}
+        \end{equation*}
+        An all the states of the dynamical system for each of the time moment can be viewed as two matrices in the following way: 
+        \begin{equation*}\tag{2}\label{eqn:2}
+            \mathbf{X} = \begin{bmatrix}
+                \\[1em]
+                x_1 & x_2 & \cdots x_{m}
+                \\[2em]
+            \end{bmatrix} 
+            \quad 
+            \mathbf{X'} = \begin{bmatrix}
+                \\[1em]
+                x_2 & x_2 & \cdots x_{m + 1}
+                \\[2em]
+            \end{bmatrix}
+        \end{equation*}
+        And the idea of DMD is to approximate a matrix, assumed to be low rank, appearing in the following optimization problem: 
+        \begin{equation*}\tag{3}\label{eqn:3}
+            \underset{\mathbf{A}}{\text{argmin}}
+                \Vert AX - X'\Vert_F
+            = AX'X^\dagger
+        \end{equation*}
+        The matrix A is also known as the Koopman operator, which is defined in a much general context than this paper but it's worth mentioning. Next our objective is looking for a way to approximate the eigenvalues and eigenvectors of the Koopman operator: $A$. We also do not make any assumption about the entries in the matrix, hence, we assume that they can be complex. and the algorithm can be outlined as the following: 
+        \begin{enumerate}
+            \item[1.] Taking the Truncated SVD on the data matrix: $U\Sigma V^H = \mathbf{X}$. The SVD of this matrix contain information about the Orthogonal Modes of the Dynamical System. 
+            \item[2.] Then: $\mathbf{X}' = A\mathbf{X} = AU\Sigma V^H$, Implying that $AU = X'V\Sigma^{-1}$, and apply $U^H$ on the left we have $U^HAU = \tilde{A}$. Matrix $\tilde{A}$ is similar to matrix $A$, meaning that share a subset of the eigenvalues (Depending on the size of matrix $U$). 
+            \item[3.] The Eigen Decomposition of matrix: $\tilde{A}W = W\Lambda$. Leading Eigenvalues in matrix $\Lambda$ is the same as matrix $A$. 
+            \item[4.] Consider describing the dynamics of $A$ we have: $U\tilde{A}W = AUW = X'V\Sigma^{-1}W$ and this is call he DMD, we name it: $\Phi$. This is a set of vectors that best describes the moments in the original system, it doesn't have to be orthogonal. 
+            \item[5. ] The evolution of the system can be model by the continous time system, approximated using the eigenvalues matrix $\Lambda$ as: 
+            \begin{equation*}\tag{4}\label{eqn:4}
+                (\Phi^\dagger u_0)\exp(\Omega t)\quad\text{Where: } \Omega = \frac{\ln(\Lambda)}{\Delta t}
+            \end{equation*}
+        \end{enumerate}
+        \textbf{Note}: DMD is useful because the size of the eigenvalues in the matrix $\Lambda$ tells us how much each of the eigenvectors in $A$ governs the dynamic modes. If $|\omega_i|$ is small, then it means it's not moving much and that is likely to be the background of the video.
+
+
+\section{Algorithm Implementation and Development}
+    \hspace{1.1em}
+    \par
+    There are 2 key parts for the algorithmic design part, The DMD itself, which is largely described in the theoretical section, and the subtraction of the video back, and that will be the focus here. 
+    \par
+    \textbf{Note}: To get the best results some trickeries are involved. The vide are rescaled to only include the important parts for better computational speed or inverted to get a better visual for the video foreground.  
+    \subsection*{Video Background Subtraction}
+        \begin{algorithm}\label{alg:1}
+            \begin{algorithmic}[h]
+            \STATE{\textbf{Input: }Reconstructed with DMD: XLowRank}
+            \STATE{XSparse := XOriginal - Abs(XLowRank)}
+            \STATE{R := (XSparse $<$ 0).*XSparse}
+            \STATE{XLowRank = R + abs(XLowRank)}
+            \STATE{XSparse = XSparse - R}\
+            \STATE{\textbf{Output:} XSparse}
+            \end{algorithmic}\caption{Algorithm 1: Background Subtraction}
+        \end{algorithm}
+        The algorithm \hyperref[alg:1]{Algorithm 1} Takes in the data matrix reconstructed using low-rank dynamics, and it outputs the part of the dynamics that have a lot of movement. At line 2, we subtract the static background to get the moving components. At line 3, we get all the negative value to be positive because negative value for video stream doesn't make sense, at line 4 we balance out all the negative value back into the static background by adding them, hence, at line 5, taking the difference (Adding the absolute value of the negative parts) gives us the foreground of the video. 
+        \par
+        The variable ``XSparse'' represent the part of the data matrix constructed by Dynamic modes with $|\omega_i| >> 0$ and the variable ``XLowRank'' represents the part of the data matrix constructed by dynamic modes corresponds to $|\omega|\approx 0$. 
+    \subsection*{Best Omega Value}
+        \begin{algorithm}\label{alg:2}
+            \begin{algorithmic}[h]
+            \STATE{\textbf{Input: }DMD Modes: $\Phi$, EigenValues: $\Lambda$, Initial Condition: $u_0$, Delta T: $\Delta t$, Time Moments: $t$}
+            \STATE{$\Omega$ := $\ln(\text{Diag}(\Lambda))/\Delta t$}
+            \STATE{$\omega_+$, Idx = min($\Omega$)}
+            \STATE{$\phi_+$ : = $\Phi(:, \text{Idx})$}
+            \STATE{$y_0$:= $\phi^\dagger u_0$}
+            \STATE{Reconstruted = $\phi_+ y_0 \exp(\omega_+ t)$}
+            \STATE{\textbf{Return: }Reconstructed, Idx}
+            \end{algorithmic}\caption{Algorithm 2: Choosing Best Omega and Reconstruct}
+        \end{algorithm}
+        \hyperref[alg:2]{Algorithm 2} Looks for the continuous eigenvalues of matrix $A$, denotes as $\omega_+$ such that $\omega_+$ is as small as possible. When this condition is made true, it's highly likely that the Dynamic Modes corresponds to the $\omega_+$ is the background of the video. And this is the key exploit of the Dynamic Mode decomposition with this particular application.
+        
+\section{Computational Results}
+    \subsection*{Selection of PCA Modes}
+        \begin{figure}[h]
+        \hspace{-2em}
+        \includegraphics*[width=0.5\linewidth]{dmd-modes-carlo.png}
+        \includegraphics*[width=0.5\linewidth]{dmd-modes-ski.png}
+        \caption{Fig 1: Carlo and Ski Singular Values}
+        \label{fig:1}
+        \end{figure}
+    \hspace{1.1em}
+    Selection of the PCA modes for the video uses sum of the eigenvalue squared, often referred to as the energy of the eigenvalues of the covariance matrix. In here, we select the singular value with just over $95\%$ of the energy to for the computation of DMD.
+    \\
+    As it can be seemed on \hyperbaseurl[fig:1]{Fig 1}, most of the the variance of the ``Ski'' video can be explain with the first singular values, and for the ``Carlo'' video, 8 Principal Components are able to explain most of the variance. This gives us the choice of how to truncate the data matrix $\mathbf{X}$. 
+    
+    \subsection*{Selection of Eigenvector for Dynamic Modes}
+        \begin{figure}[h]
+            \includegraphics*[width=0.5\linewidth]{dmd-omega-carlo.png}
+            \includegraphics*[width=0.5\linewidth]{dmd-omega-ski.png}
+            \caption{Fig 2: Values of Omegas}
+            \label{fig:2}
+        \end{figure}
+        \hspace{1.1em}
+        The selection is simply choosing the smallest values $\omega_i$ (The diagonal of the $\Omega$ matrix).
+        \\
+        As it can be seemed on \hyperref[fig:2]{Fig 2}, the dominant Principal modes corresponds to the same Orthogonal Basis. This is true because the first video has a lot of background and the moving parts are just principal modes, resulting in $U$ matrix being a scalar, hence making $\widetilde{A}$ also a scalar. 
+        \\
+        However for the ``Carlo'' video, there many singular values, and resulting more options for choosing $\omega_+$ for the Koopman operator, therefore, we have to choose $\omega_+$ such that $\Vert \omega_+\Vert$ is as small as possible. In this case, the principal mode is controlled by it and it will be static. 
+        \\
+        Here we made the choice of choosing the smallest $\omega$, but in practice, multiple eigenvalues can be chosen to get different amount of separations. 
+    \subsection*{Video Original and Foreground}
+        \begin{figure}[h]
+            \centering
+            \includegraphics*[width=0.9\linewidth]{dmd-foreground-original-carlo.png}
+            \includegraphics*[width=0.9\linewidth]{dmd-foreground-original-ski.png}
+            \caption{Fig 3: Background Extraction}
+        \label{fig:3}
+        \end{figure}
+            \begin{figure}[h]
+            \centering
+            \includegraphics*[width=0.7\linewidth]{static-background-carlo.png}
+            \includegraphics*[width=0.7\linewidth]{static-background-ski.png}
+            \caption{Figure 3: Carlo Static Background (Top), Ski Static Background (Bottom)}
+            \label{fig:3}
+        \end{figure}
+        \hspace{1.1em}
+        To extract the background, we use \hyperref[alg:2]{Algorithm 2} which will take out the foreground if the data matrix reconstructed using the smallest $\omega$ is given. 
+        \\
+        The results of the separation using the smallest $\omega$ is shown in \hyperref[fig:3]{Figure 3}, and it can be easily seemed that the moving objects has been successfully separated from the static background, which are shown in \hyperref[fig:3]{Figure 3}
+        
+\section{Summary and Conclusions}
+    \hspace{1.1em}
+    In this assignment we have seen one of the applications of DMD. Some of the practical challenges involved are the big computational complexity. However, to augment the idea, it's possible truncate the video into different sections and we seek for the best reconstruction for each section of the video. In practice, the method of DMD is applicable only when PCA gives reasonable results, which means that DMD will not be robust towards noise introduced via camera shake. In addition the Koopman operator is approximated, hence it cannot extrapolate. 
+   
+% References
+\printbibliography
+
+% Appendices
+\begin{appendices}
+
+\section{MATLAB Functions}
+
+    
+\end{appendices}
+
+\end{document}
